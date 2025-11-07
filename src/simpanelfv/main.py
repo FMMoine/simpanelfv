@@ -31,8 +31,8 @@ print(base.pot_media(pot_rang), base.energia(pot_rang))
 
 st.write("""
     # Apliacion para dejarlo contento al profe
-        Simulador de generación de equipo de paneles fotovoltaicos
-
-    $$ \frac{a}{b} $$
-              
+    Simulador de generación de equipo de paneles fotovoltaicos
     """)
+st.latex(r"""
+    \frac{a}{b}
+""")
