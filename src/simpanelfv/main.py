@@ -33,6 +33,6 @@ st.write("""
     # Apliacion para dejarlo contento al profe
         Simulador de generación de equipo de paneles fotovoltaicos
 
-    $ \frac{a}{b} $
+    $$ \frac{a}{b} $$
               
     """)
