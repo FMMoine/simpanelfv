@@ -7,6 +7,10 @@ def test():
 
 # Clase base de generador fotovoltaico fundamental
 class GenPanFV:
+    """
+    # Clase Generador fotovoltaico elemental
+    """
+
     def __init__(self, Ppico, N, kp, eta, Pinv, mu=2, Gstd = 1000, Tr=25):
         self.Ppico = Ppico
         self.kp = kp
@@ -43,18 +47,24 @@ class GenPanFV:
         return P
 
 
-# Functiones que manipulan la informacion obtenida a traves de los datos ingresados (ir lista de potencia generada)
-def pot_media():
+# Functiones que manipulan la informacion obtenida a traves de los datos ingresados (ie lista de potencia generada)
+def pot_media(lista_p):
     """
     Recibe los mismos argumentos que la función anterior, y devuelve
     la potencia que resulta de promediar todas las calculadas con
     cada par de valores de irradiancia y temperatura ambiente.
     """
+    return lista_p.mean()
 
-def energia():
+def energia(lista_p):
     """
     # Recibe los mismos argumentos que la función anterior, y devuelve
     # la energía generada por el GFV (en kWh), asumiendo que el intervalo
     # de tiempo transcurrido entre 2 mediciones de irradiancia (o de temp.)
     # es de 10 minutos.
     """
+    nrg = lista_p * (1/6)
+    return nrg.sum()
+
+
+# gen1 = GenPanFV(240, 12, -4.4e-3, 0.97, 2.5, 2)
