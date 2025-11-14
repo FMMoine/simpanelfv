@@ -1,5 +1,6 @@
 # simpanelfv
-Proyecto Integrador de Introduccion a la programacion cientifia con MatLab y Python, ABP. Simulador Generador Fotovoltaico
+Este es un Proyecto Integrador de Introduccion a la programacion cientifica con MatLab y Python, ABP. 
+Se basa en un Simulador Generador Fotovoltaico
 
 ## Tabla de contenidos
 * [Memoria Descriptiva](#memoria-descriptiva)
@@ -7,6 +8,7 @@ Proyecto Integrador de Introduccion a la programacion cientifia con MatLab y Pyt
     * [Interfaz gráfica](#interfaz-gráfica)
     * [Limitaciones](#limitaciones)
 * [License](#license)
+* [Autores](#Autores)
 
 ## Memoria Descriptiva
 
@@ -18,3 +20,7 @@ Proyecto Integrador de Introduccion a la programacion cientifia con MatLab y Pyt
 
 ## License
 
+# Autores
+- Francisco Moine fmoine@frsf.utn.edu.ar
+- Gonzalo Morel gmorel@frsf.utn.edu.ar
+- Leonel Oldrini loldrini@frsf.ut.edu.ar
