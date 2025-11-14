@@ -1,3 +1,4 @@
+!['simpanelfv brand']('img/SimpanelFV1.png')
 # simpanelfv
 Este es un Proyecto Integrador de Introduccion a la programacion cientifica con MatLab y Python, ABP. 
 Se basa en un Simulador Generador Fotovoltaico
@@ -21,6 +22,6 @@ Se basa en un Simulador Generador Fotovoltaico
 ## License
 
 # Autores
-- Francisco Moine fmoine@frsf.utn.edu.ar
-- Gonzalo Morel gmorel@frsf.utn.edu.ar
-- Leonel Oldrini loldrini@frsf.ut.edu.ar
+- Francisco Moine: fmoine@frsf.utn.edu.ar
+- Gonzalo Morel: gmorel@frsf.utn.edu.ar
+- Leonel Oldrini: loldrini@frsf.ut.edu.ar
