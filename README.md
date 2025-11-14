@@ -21,6 +21,6 @@ Se basa en un Simulador Generador Fotovoltaico
 ## License
 
 # Autores
-- Francisco Moine 
-- Gonzalo Morel
-- Leonel Oldrini 
+- Francisco Moine fmoine@frsf.utn.edu.ar
+- Gonzalo Morel gmorel@frsf.utn.edu.ar
+- Leonel Oldrini loldrini@frsf.ut.edu.ar
