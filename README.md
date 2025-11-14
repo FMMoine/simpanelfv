@@ -19,4 +19,7 @@ Se basa en un Simulador Generador Fotovoltaico
 
 ## License
 
-## Autores
+# Autores
+Francisco Moine 
+Gonzalo Morel
+Leonel Oldrini 
