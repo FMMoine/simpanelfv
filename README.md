@@ -1,4 +1,4 @@
-!['simpanelfv brand']('img/SimpanelFV1.png')
+![simpanelfv brand](img/SimpanelFV1.png)
 # simpanelfv
 Este es un Proyecto Integrador de Introduccion a la programacion cientifica con MatLab y Python, ABP. 
 Se basa en un Simulador Generador Fotovoltaico
