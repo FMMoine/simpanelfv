@@ -8,6 +8,7 @@ Se basa en un Simulador Generador Fotovoltaico
     * [Interfaz gráfica](#interfaz-gráfica)
     * [Limitaciones](#limitaciones)
 * [License](#license)
+* [Autores](#Autores)
 
 ## Memoria Descriptiva
 
@@ -21,5 +22,5 @@ Se basa en un Simulador Generador Fotovoltaico
 
 # Autores
 Francisco Moine 
-Gonzalo Morel
-Leonel Oldrini 
+- Gonzalo Morel
+- Leonel Oldrini 
