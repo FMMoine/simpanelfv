@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def test():
+def lib_test():
     print("The package has been succesfully loaded!")
 
 # Clase base de generador fotovoltaico fundamental
@@ -20,7 +20,7 @@ class GenPanFV:
         self.mu = mu
         self.Gstd = Gstd
         self.Tr = Tr
-        # self.pot_med = 0
+        self.listaP = np.array([0])
 
     def pot_modelo_GFV(self, G, T):
         """
@@ -44,27 +44,27 @@ class GenPanFV:
         Tc = lista_T + 0.031 * lista_G
         P = self.N * (lista_G / self.Gstd) * self.Ppico * (1 + self.kp * (Tc - self.Tr)) * self.eta * 1e-3
 
-        return P
+        self.listaP = P
 
 
-# Functiones que manipulan la informacion obtenida a traves de los datos ingresados (ie lista de potencia generada)
-def pot_media(lista_p):
-    """
-    Recibe los mismos argumentos que la función anterior, y devuelve
-    la potencia que resulta de promediar todas las calculadas con
-    cada par de valores de irradiancia y temperatura ambiente.
-    """
-    return lista_p.mean()
+    # Functiones que manipulan la informacion obtenida a traves de los datos ingresados (ie lista de potencia generada)
+    def pot_media(self):
+        """
+        Recibe los mismos argumentos que la función anterior, y devuelve
+        la potencia que resulta de promediar todas las calculadas con
+        cada par de valores de irradiancia y temperatura ambiente.
+        """
+        return self.listaP.mean()
 
-def energia(lista_p):
-    """
-    # Recibe los mismos argumentos que la función anterior, y devuelve
-    # la energía generada por el GFV (en kWh), asumiendo que el intervalo
-    # de tiempo transcurrido entre 2 mediciones de irradiancia (o de temp.)
-    # es de 10 minutos.
-    """
-    nrg = lista_p * (1/6)
-    return nrg.sum()
+    def energia(self):
+        """
+        # Recibe los mismos argumentos que la función anterior, y devuelve
+        # la energía generada por el GFV (en kWh), asumiendo que el intervalo
+        # de tiempo transcurrido entre 2 mediciones de irradiancia (o de temp.)
+        # es de 10 minutos.
+        """
+        nrg = self.listaP * (1/6)
+        return nrg.sum()
 
 
 # gen1 = GenPanFV(240, 12, -4.4e-3, 0.97, 2.5, 2)
