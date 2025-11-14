@@ -21,6 +21,6 @@ Se basa en un Simulador Generador Fotovoltaico
 ## License
 
 # Autores
-Francisco Moine 
+- Francisco Moine 
 - Gonzalo Morel
 - Leonel Oldrini 
