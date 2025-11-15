@@ -15,7 +15,9 @@ Se basa en un Simulador Generador Fotovoltaico
 ## Memoria Descriptiva
 
 ## Caracterísitcas de la App
-
+Esta aplicación contiene las siguientes características:
+- Configuración Personalizada: El usuario puede ingresar manualmente las especificaciones técnicas y características operativas del sistema generador que desea simular.
+- 	Configuración Predefinida: Se ofrece la opción de utilizar un perfil predefinido, basado en los parámetros técnicos del generador perteneciente a la facultad
 ### Interfaz gráfica
 
 ### Limitaciones
