@@ -66,5 +66,17 @@ class GenPanFV:
         nrg = self.listaP * (1/6)
         return nrg.sum()
 
+    def factor_de_utilizacion(self):
+        """
+        # Recibe los mismos argumentos que la función anterior, y devuelve
+        # el factor de utilización del GFV, definido como la energía
+        # generada en un período dividido por la energía que se hubiera
+        # generado si el GFV hubiera operado a potencia pico durante
+        # todo el período.
+        """
+        energia_generada = self.energia()
+        energia_pico = self.Ppico * self.N * (len(self.listaP) * (1/6))
 
+        fdu = energia_generada / energia_pico
+        return fdu
 # gen1 = GenPanFV(240, 12, -4.4e-3, 0.97, 2.5, 2)
