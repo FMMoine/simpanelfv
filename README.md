@@ -21,6 +21,8 @@ Se basa en un Simulador Generador Fotovoltaico
 ### Limitaciones
 
 ## License
+MIT License
+Copyright (c) 2025 Simpanelfv
 
 # Autores
 - Francisco Moine: fmoine@frsf.utn.edu.ar
