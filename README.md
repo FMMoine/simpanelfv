@@ -27,6 +27,8 @@ La aplicación basará su enfoque al analisis físico-energtico y la facilidad d
 
 - Análisis de Sombras y "Balance of System" (BOS): La simulación no contempla pérdidas de rendimiento ocasionadas por sombreado de objetos externos. Asimismo, el cálculo se centra en el rendimiento ideal del panel basado en la irradiancia y los datos del fabricante, sin simular las pérdidas específicas de componentes eléctricos del BOS.
 ## License
+MIT License
+Copyright (c) 2025 Simpanelfv
 
 # Autores
 - Francisco Moine: fmoine@frsf.utn.edu.ar
