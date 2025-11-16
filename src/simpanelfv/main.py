@@ -29,10 +29,10 @@ plt.show()
 
 print(gen_facultad.pot_media(), gen_facultad.energia())
 
-st.write("""
-    # Apliacion para dejarlo contento al profe
-    Simulador de generación de equipo de paneles fotovoltaicos
-    """)
-st.latex(r"""
-    \frac{a}{b}
-""")
+# st.write("""
+#     # Apliacion para dejarlo contento al profe
+#     Simulador de generación de equipo de paneles fotovoltaicos
+#     """)
+# st.latex(r"""
+#     \frac{a}{b}
+# """)
