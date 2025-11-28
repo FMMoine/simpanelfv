@@ -38,8 +38,8 @@ pages = {
     ],
 
     "Configuración": [
-        st.Page("pages/02a_configuracion.py", title="Configuración del Generador"),
-        st.Page("pages/02b_configuracion.py", title="Configuración de Datos de Entrada y Salida"),
+        st.Page("pages/02a_configuracion.py", title="Generador Fotovoltaico"),
+        st.Page("pages/02b_configuracion.py", title="Datos de Entrada y Salida"),
     ],
 
     "Cálculos y Resultados": [
