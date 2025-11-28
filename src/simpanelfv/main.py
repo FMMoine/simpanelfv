@@ -49,5 +49,5 @@ pages = {
     ],
 }
 
-pg = st.navigation(pages, position="top")
+pg = st.navigation(pages, position="sidebar")
 pg.run()
