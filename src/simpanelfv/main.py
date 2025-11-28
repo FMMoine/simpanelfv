@@ -46,3 +46,9 @@ ejemplo_tabla = pd.DataFrame(data={
 st.dataframe(ejemplo_tabla)
 fig = px.pie(ejemplo_tabla, names='Categorias', values='Valores')
 st.plotly_chart(fig)
+
+arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
+
+if arch_data is not None:
+    tabla = pd.read_excel(arch_data)
+    st.dataframe(tabla)
