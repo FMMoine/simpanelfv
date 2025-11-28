@@ -33,6 +33,7 @@ print(gen_facultad.pot_media(), gen_facultad.energia())
 pages = {
     "Inicio": [
         st.Page("pages/01_inicio.py", title="Inicio"),
+   
     ],
     "Configuración": [
         st.Page("pages/02_configuracion.py", title="Configuración"),
