@@ -32,19 +32,19 @@ print(gen_facultad.pot_media(), gen_facultad.energia())
 
 pages = {
     "Inicio": [
-        st.Page("src/simpanelfv/pages/01_inicio.py", title="Inicio"),
+        st.Page("pages/01_inicio.py", title="Inicio"),
     ],
     "Config": [
-        st.Page("src/simpanelfv/pages/02_configuracion.py", title="Configuracion"),
+        st.Page("pages/02_configuracion.py", title="Configuracion"),
     ],
     "Calculos": [
-        st.Page("src/simpanelfv/pages/03_calculos.py", title="Calculos y Resultados"),
+        st.Page("pages/03_calculos.py", title="Calculos y Resultados"),
     ],
     "MarTeor": [
-        st.Page("src/simpanelfv/pages/04_marteor.py", title="Marco Teorico"),
+        st.Page("pages/04_marteor.py", title="Marco Teorico"),
     ],
     "About": [
-        st.Page("src/simpanelfv/pages/05_about.py", title="Learn about us"),
+        st.Page("pages/05_about.py", title="Learn about us"),
     ]
 }
 
