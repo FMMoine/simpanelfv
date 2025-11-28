@@ -41,6 +41,13 @@ with inicio:
         \frac{a}{b}
     """)
 
+with config:
+    arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
+
+    if arch_data is not None:
+        tabla = pd.read_excel(arch_data)
+        st.dataframe(tabla)    
+
 with calc:
     ejemplo_tabla = pd.DataFrame(data={
         "Valores": [1, 2, 3, 4, 5, 6],
@@ -50,12 +57,6 @@ with calc:
     st.dataframe(ejemplo_tabla)
     fig = px.pie(ejemplo_tabla, names='Categorias', values='Valores')
     st.plotly_chart(fig)
-
-    arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
-
-    if arch_data is not None:
-        tabla = pd.read_excel(arch_data)
-        st.dataframe(tabla)
 
 with extras:
     st.write("""
