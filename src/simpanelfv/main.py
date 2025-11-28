@@ -30,25 +30,37 @@ plt.show()
 
 print(gen_facultad.pot_media(), gen_facultad.energia())
 
-st.write("""
-    # Apliacion para dejarlo contento al profe
-    Simulador de generación de equipo de paneles fotovoltaicos
+inicio, config, calc, marteor, extras = st.tabs(["Inicio", "Configuración", "Cálculos y Resultados", "Marco Teórico", "About"])
+
+with inicio:
+    st.write("""
+        # SimPanelFV
+        Simulador de generación de equipo de paneles fotovoltaicos
+        """)
+    st.latex(r"""
+        \frac{a}{b}
     """)
-st.latex(r"""
-    \frac{a}{b}
-""")
 
-ejemplo_tabla = pd.DataFrame(data={
-    "Valores": [1, 2, 3, 4, 5, 6],
-    "Categorias": ["A", "B", "C", "D", "E", "F"]
-})
+with calc:
+    ejemplo_tabla = pd.DataFrame(data={
+        "Valores": [1, 2, 3, 4, 5, 6],
+        "Categorias": ["A", "B", "C", "D", "E", "F"]
+    })
 
-st.dataframe(ejemplo_tabla)
-fig = px.pie(ejemplo_tabla, names='Categorias', values='Valores')
-st.plotly_chart(fig)
+    st.dataframe(ejemplo_tabla)
+    fig = px.pie(ejemplo_tabla, names='Categorias', values='Valores')
+    st.plotly_chart(fig)
 
-arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
+    arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
 
-if arch_data is not None:
-    tabla = pd.read_excel(arch_data)
-    st.dataframe(tabla)
+    if arch_data is not None:
+        tabla = pd.read_excel(arch_data)
+        st.dataframe(tabla)
+
+with extras:
+    st.write("""
+    Hecho por:
+    Licencia MIT
+    Repositorio Github Privado, por ahora
+    Contacto:
+             """)
