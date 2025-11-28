@@ -11,6 +11,7 @@ Se basa en un Simulador Generador Fotovoltaico
     * [Limitaciones](#limitaciones)
 * [License](#license)
 * [Autores](#Autores)
+* [Link](#Link) 
 
 ## [Memoria Descriptiva](memoria_descriptiva.pdf)
 
@@ -30,6 +31,7 @@ La aplicación basará su enfoque al analisis físico-energtico y la facilidad d
 - Dimensionamiento Automático: Simpanelfv es una herramienta de simulación y validación, no de diseño o dimensionamiento automático. La aplicación no sugiere una configuración óptima de paneles basada en un perfil de consumo.
 
 - Análisis de Sombras y "Balance of System" (BOS): La simulación no contempla pérdidas de rendimiento ocasionadas por sombreado de objetos externos. Asimismo, el cálculo se centra en el rendimiento ideal del panel basado en la irradiancia y los datos del fabricante, sin simular las pérdidas específicas de componentes eléctricos del BOS.
+
 ## License
 MIT License
 Copyright (c) 2025 Simpanelfv
@@ -38,5 +40,6 @@ Copyright (c) 2025 Simpanelfv
 - Francisco Moine: fmoine@frsf.utn.edu.ar
 - Gonzalo Morel: gmorel@frsf.utn.edu.ar
 - Leonel Oldrini: loldrini@frsf.ut.edu.ar
-
+## Link
+https://simpanelfv-utn-frsf.streamlit.app/
 ![simpanelfv flyer](img/SimpanelFV1.png)
