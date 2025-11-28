@@ -34,71 +34,18 @@ pages = {
     "Inicio": [
         st.Page("pages/01_inicio.py", title="Inicio"),
     ],
-    "Config": [
-        st.Page("pages/02_configuracion.py", title="Configuracion"),
+    "Configuración": [
+        st.Page("pages/02_configuracion.py", title="Configuración"),
     ],
-    "Calculos": [
+    "Cálculos y Resultados": [
         st.Page("pages/03_calculos.py", title="Calculos y Resultados"),
     ],
-    "MarTeor": [
-        st.Page("pages/04_marteor.py", title="Marco Teorico"),
-    ],
-    "About": [
+    "Información General": [
+        st.Page("pages/04_marteor.py", title="Marco Teórico"),
         st.Page("pages/05_about.py", title="Learn about us"),
-    ]
+    ],
+
 }
 
 pg = st.navigation(pages)
 pg.run()
-
-inicio, config, calc, marteor, extras = st.tabs(["Inicio", "Configuración", "Cálculos y Resultados", "Marco Teórico", "About"])
-
-with inicio:
-    st.write("""
-        # SimPanelFV
-        Simulador de generación de equipo de paneles fotovoltaicos
- ## Caracterísitcas de la App
-## Esta aplicación contiene las siguientes características:
-- Configuración Personalizada: El usuario puede ingresar manualmente las especificaciones técnicas y características operativas del sistema generador que desea simular.
-- 	Configuración Predefinida: Se ofrece la opción de utilizar un perfil predefinido, basado en los parámetros técnicos del generador perteneciente a la UTN Facultad Regional Santa Fe.
-### Interfaz gráfica
--	Módulo de Cálculo: Sección central de la herramienta donde el usuario configura los parámetros de entrada, como pueden ser la cantidad de módulos fotovoltaicos, parámetros de los característicos de los módulos, potencia nominal de los equipos y demás opciones y la ejecución las simulaciones del sistema.
--	Dashboard (Panel de Control): Apartado dedicado a la visualización de resultados. Presenta los datos de salida mediante gráficos, métricas y figuras de análisis dinámicas.
-
-### Limitaciones
-La aplicación basará su enfoque al analisis físico-energtico y la facilidad de su uso, por lo cual  se excluyen las siguentes funcionalidades del proyecto.
-
-- Ánalisis Economico: No realiza cálculos de viabilidad financiera, retorno de la inversión, costos de instalación o amortización, ya que  depended de variables externas (tarifas eléctricas, costos, impuestos) que son volátiles y escapan al alcance de este simulador.
-
-- Dimensionamiento Automático: Simpanelfv es una herramienta de simulación y validación, no de diseño o dimensionamiento automático. La aplicación no sugiere una configuración óptima de paneles basada en un perfil de consumo.
-
-- Análisis de Sombras y "Balance of System" (BOS): La simulación no contempla pérdidas de rendimiento ocasionadas por sombreado de objetos externos. Asimismo, el cálculo se centra en el rendimiento ideal del panel basado en la irradiancia y los datos del fabricante, sin simular las pérdidas específicas de componentes eléctricos del BOS.
- """)
-with config:
-    arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
-
-    if arch_data is not None:
-        tabla = pd.read_excel(arch_data)
-        st.dataframe(tabla)    
-
-with calc:
-    ejemplo_tabla = pd.DataFrame(data={
-        "Valores": [1, 2, 3, 4, 5, 6],
-        "Categorias": ["A", "B", "C", "D", "E", "F"]
-    })
-
-    st.dataframe(ejemplo_tabla)
-    fig = px.pie(ejemplo_tabla, names='Categorias', values='Valores')
-    st.plotly_chart(fig)
-
-with extras:
-    st.write("""
-     Miembros y Contactos:
-- Francisco Moine: fmoine@frsf.utn.edu.ar
-- Gonzalo Morel: gmorel@frsf.utn.edu.ar
-- Leonel Oldrini: loldrini@frsf.ut.edu.ar
-    
-    Licencia MIT
-    Repositorio Github Privado, por ahora
- 
-             """)
