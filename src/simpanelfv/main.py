@@ -36,20 +36,17 @@ pages = {
         st.Page("pages/04_marteor.py", title="Marco Teórico"),
         st.Page("pages/05_about.py", title="Learn about us"),
     ],
+
     "Configuración": [
         st.Page("pages/02a_configuracion.py", title="Configuración del Generador"),
         st.Page("pages/02b_configuracion.py", title="Configuración de Datos de Entrada y Salida"),
     ],
+
     "Cálculos y Resultados": [
         st.Page("pages/03a_calculos.py", title="Calculos y Resultados"),
         st.Page("pages/03b_calculos.py", title="Gráficos"),
         st.Page("pages/03c_calculos.py", title="Extras"),
     ],
-    "Información General": [
-        st.Page("pages/04_marteor.py", title="Marco Teórico"),
-        st.Page("pages/05_about.py", title="Learn about us"),
-    ],
-
 }
 
 pg = st.navigation(pages)
