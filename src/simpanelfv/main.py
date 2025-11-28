@@ -60,10 +60,10 @@ with calc:
 
 with extras:
     st.write("""
-     Miemros y Contacto:
-    - Francisco Moine 
-    - Gonzalo Morel 
-    - Leonel Oldrini
+     Miembros y Contactos:
+- Francisco Moine: fmoine@frsf.utn.edu.ar
+- Gonzalo Morel: gmorel@frsf.utn.edu.ar
+- Leonel Oldrini: loldrini@frsf.ut.edu.ar
     
     Licencia MIT
     Repositorio Github Privado, por ahora
