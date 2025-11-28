@@ -13,6 +13,6 @@ st.write("""
 - Leonel Oldrini: loldrini@frsf.ut.edu.ar
 
 Licencia MIT
-Repositorio Github Privado, por ahora
+Repositorio Github Privado
 
             """)

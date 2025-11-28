@@ -31,15 +31,19 @@ plt.show()
 print(gen_facultad.pot_media(), gen_facultad.energia())
 
 pages = {
-    "Inicio": [
+    "Información General": [
         st.Page("pages/01_inicio.py", title="Inicio"),
-   
+        st.Page("pages/04_marteor.py", title="Marco Teórico"),
+        st.Page("pages/05_about.py", title="Learn about us"),
     ],
     "Configuración": [
-        st.Page("pages/02_configuracion.py", title="Configuración"),
+        st.Page("pages/02a_configuracion.py", title="Configuración del Generador"),
+        st.Page("pages/02b_configuracion.py", title="Configuración de Datos de Entrada y Salida"),
     ],
     "Cálculos y Resultados": [
-        st.Page("pages/03_calculos.py", title="Calculos y Resultados"),
+        st.Page("pages/03a_calculos.py", title="Calculos y Resultados"),
+        st.Page("pages/03b_calculos.py", title="Gráficos"),
+        st.Page("pages/03c_calculos.py", title="Extras"),
     ],
     "Información General": [
         st.Page("pages/04_marteor.py", title="Marco Teórico"),

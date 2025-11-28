@@ -8,6 +8,6 @@ from lib.fcn_base import lib_test, GenPanFV
 
 arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
 
-if arch_data is not None:
-    tabla = pd.read_excel(arch_data)
-    st.dataframe(tabla)  
+st.write("""
+# Configuración del sistema generador
+         """)

@@ -6,6 +6,10 @@ import plotly.express as px
 
 from lib.fcn_base import lib_test, GenPanFV
 
+st.write("""
+# Gráficos
+         """)
+
 ejemplo_tabla = pd.DataFrame(data={
     "Valores": [1, 2, 3, 4, 5, 6],
     "Categorias": ["A", "B", "C", "D", "E", "F"]
