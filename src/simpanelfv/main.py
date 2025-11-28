@@ -60,8 +60,12 @@ with calc:
 
 with extras:
     st.write("""
-    Hecho por:
+     Miemros y Contacto:
+    - Francisco Moine 
+    - Gonzalo Morel 
+    - Leonel Oldrini
+    
     Licencia MIT
     Repositorio Github Privado, por ahora
-    Contacto:
+ 
              """)
