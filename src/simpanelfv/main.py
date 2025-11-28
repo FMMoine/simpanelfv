@@ -42,8 +42,8 @@ pages = {
         st.Page("pages/02b_configuracion.py", title="Datos de Entrada y Salida"),
     ],
 
-    "Cálculos y Resultados": [
-        st.Page("pages/03a_calculos.py", title="Calculos y Resultados"),
+    "Cálculos": [
+        st.Page("pages/03a_calculos.py", title="Modelado"),
         st.Page("pages/03b_calculos.py", title="Gráficos"),
         st.Page("pages/03c_calculos.py", title="Extras"),
     ],
