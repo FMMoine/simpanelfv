@@ -4,17 +4,17 @@ if 'config_guardada' not in st.session_state:
     st.session_state['config_guardada'] = False
 
 if 'N' not in st.session_state:
-    st.session_state['N'] = 0          # Cantidad de paneles
+    st.session_state['N'] = 10          # Cantidad de paneles
 if 'Ppico' not in st.session_state:
-    st.session_state['Ppico'] = 0.0    # Potencia pico
+    st.session_state['Ppico'] = 330.0    # Potencia pico
 if 'kp' not in st.session_state:
-    st.session_state['kp'] = 0.0       # Coeficiente temperatura
+    st.session_state['kp'] = -0.0040       # Coeficiente temperatura
 if 'eta' not in st.session_state:
-    st.session_state['eta'] = 0.0      # Rendimiento
+    st.session_state['eta'] = 0.90      # Rendimiento
 if 'Pinv' not in st.session_state:
-    st.session_state['Pinv'] = 0.0     # Potencia Inversor
+    st.session_state['Pinv'] = 3.0     # Potencia Inversor
 if 'mu' not in st.session_state:
-    st.session_state['mu'] = 0.0       # Umbral mínimo
+    st.session_state['mu'] = 2.0       # Umbral mínimo
 
 # Variables de simulación (Resultados)
 if 'simulacion_realizada' not in st.session_state:
