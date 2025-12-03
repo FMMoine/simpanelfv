@@ -65,7 +65,7 @@ if st.button("Ejecutar Simulación", type="primary"):
         )
         
         # Personalización:
-        fig.update_traces(line_color='lime', fill='tozeroy')
+        fig.update_traces(line_color='red', fill='tozeroy')
         fig.update_layout(hovermode="x unified") # Muestra el valor al pasar el mouse
         
         st.plotly_chart(fig, use_container_width=True)
