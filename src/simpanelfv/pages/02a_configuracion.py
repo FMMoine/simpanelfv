@@ -52,4 +52,4 @@ if st.button("Guardar Configuración", type="primary"):
     st.session_state['config_guardada'] = True
 
     st.success("¡Configuración guardada correctamente!")
-    st.info("Ahora puedes ir al menú 'Cálculos' para cargar el Excel con los datos del clima.")
+    st.info("Ahora podés ir al menú 'Datos de entrada y salida' para cargar el Excel con los datos del clima.")
