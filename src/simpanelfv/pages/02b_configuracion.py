@@ -30,7 +30,7 @@ if arch_data is not None:
                      st.session_state ['datos_cargados']=True
                      st.write("Vista previa de los datos:")
                      st.dataframe(tabla)
-                     st.info("Datos procesados. Podes pasar a la sección 'Datos de entrada' para simular.")
+                     st.info("Datos procesados. Podés pasar a la sección 'Cálculo' para simular.")
             else:
                      st.error("El archivo no tiene el formato correcto.")
                      st.warning("El excel debe tener una columna llamada **'G'** (Irradiancia) y otra **'T'** (Temperatura)")
