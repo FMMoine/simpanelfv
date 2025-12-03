@@ -35,14 +35,13 @@ try:
         df_ejemplo.to_excel(writer, index=False, sheet_name='Datos_Clima')
     
         data_excel = output.getvalue()
-    
-    # BOTÓN DE DESCARGA 
-    st.download_button(
+        # BOTÓN DE DESCARGA 
+        st.download_button(
         label="Descargar Plantilla Excel (.xlsx)",
         data=data_excel,
         file_name="plantilla_clima_ejemplo.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-    )
+        )
 
 except Exception as e:
     # Si falla la creación del Excel, ofrecemos CSV
