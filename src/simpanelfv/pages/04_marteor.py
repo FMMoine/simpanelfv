@@ -36,3 +36,4 @@ los inversores deben gestionar el factor de potencia para entregar energía efic
 - Dimensionamiento: No se trata solo de poner paneles. Debes calcular tu consumo en kWh/mes 
 y la irradiación solar de tu zona (HSP: Horas Sol Pico) para determinar cuántos paneles 
 y baterías necesitas.
+""")
