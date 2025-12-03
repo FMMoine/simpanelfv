@@ -31,7 +31,7 @@ mu = st.session_state['mu']
 
 df = st.session_state['df_clima']
 
-st.success(f"✅ Datos listos: Simular {N} paneles ({Ppico}W) con {len(df)} registros de clima.")
+st.success(f"Datos listos: Simular {N} paneles ({Ppico}W) con {len(df)} registros de clima.")
 
 if st.button("Ejecutar Simulación", type="primary"):
     
