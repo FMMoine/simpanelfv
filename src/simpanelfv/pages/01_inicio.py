@@ -1,5 +1,17 @@
 import streamlit as st
 
+if 'tipo_configuración' not in st.session_state:
+        st.session_state['tipo_configuración']=None
+if 'voc' not in st.session_state:
+    st.session_state['voc'] = 0.0
+if 'isc' not in st.session_state:
+    st.session_state['isc'] = 0.0
+if 'pmax' not in st.session_state:
+    st.session_state['pmax'] = 0.0
+
+# Variables de simulación (Resultados)
+if 'simulacion_realizada' not in st.session_state:
+    st.session_state['simulacion_realizada'] = False
 st.write("""
         # SimPanelFV
         Simulador de generación de equipo de paneles fotovoltaicos
