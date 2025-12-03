@@ -15,6 +15,15 @@ arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
 if arch_data is not None:
    try:
             tabla = pd.read_excel(arch_data)
+            mapa_nombres = {
+            'Irradiancia (W/m²)': 'G',
+            'Irradiancia (W/m2)': 'G',
+            'Irradiancia': 'G',
+            'Temperatura (°C)': 'T',
+            'Temperatura (C)': 'T',
+            'Temperatura': 'T'
+        }
+        tabla = tabla.rename(columns=mapa_nombres)
             if 'G' in tabla.columns and 'T' in tabla.columns:
                      st.success("Archivo validado correctamente.")
                      st.session_state['df_clima']=tabla
