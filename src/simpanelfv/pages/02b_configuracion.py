@@ -13,5 +13,21 @@ st.write("""
 arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
 
 if arch_data is not None:
-    tabla = pd.read_excel(arch_data)
-    st.dataframe(tabla)
+   try:
+            tabla = pd.read_excel(arch_data)
+                  if 'G' in tabla.columns and 'T' in tabla.columns:
+                           st.success("Archivo validado correctamente.")
+                           st.session_state['df_clima']=tabla
+                           st.session_state ['datos_cargados']=True
+                           st.write("Vista previa de los datos:")
+                           st.dataframe(tabla)
+                           st.info("Datos procesados. Podes pasar a la sección 'Cálculos' para simular.")
+                  else:
+                           st.error("El archivo no tiene el formato correcto.")
+                           st.warning("El excel debe tener una columna llamada **'G'** (Irradiancia) y otra **'T'** (Temperatura)")
+                           st.write("Columnas encontradas:",tabla.columns.tolist())
+   except Exception as e:
+            st.error(f"Error al leer el archivo:{e}")
+                           
+else:
+         st.info("Esperando carga de archivo")
