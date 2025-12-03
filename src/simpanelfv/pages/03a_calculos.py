@@ -29,7 +29,7 @@ eta = st.session_state['eta']
 mu = st.session_state['mu']
 
 
-df = st.session_state['df_clima']
+df_input = st.session_state['df_clima']
 
 st.success(f"Datos listos: Simular {N} paneles ({Ppico}W) con {len(df)} registros de clima.")
 
