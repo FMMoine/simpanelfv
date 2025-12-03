@@ -1,13 +1,20 @@
 import streamlit as st
 
-if 'tipo_configuración' not in st.session_state:
-        st.session_state['tipo_configuración']=None
-if 'voc' not in st.session_state:
-    st.session_state['voc'] = 0.0
-if 'isc' not in st.session_state:
-    st.session_state['isc'] = 0.0
-if 'pmax' not in st.session_state:
-    st.session_state['pmax'] = 0.0
+if 'config_guardada' not in st.session_state:
+    st.session_state['config_guardada'] = False
+
+if 'N' not in st.session_state:
+    st.session_state['N'] = 0          # Cantidad de paneles
+if 'Ppico' not in st.session_state:
+    st.session_state['Ppico'] = 0.0    # Potencia pico
+if 'kp' not in st.session_state:
+    st.session_state['kp'] = 0.0       # Coeficiente temperatura
+if 'eta' not in st.session_state:
+    st.session_state['eta'] = 0.0      # Rendimiento
+if 'Pinv' not in st.session_state:
+    st.session_state['Pinv'] = 0.0     # Potencia Inversor
+if 'mu' not in st.session_state:
+    st.session_state['mu'] = 0.0       # Umbral mínimo
 
 # Variables de simulación (Resultados)
 if 'simulacion_realizada' not in st.session_state:
