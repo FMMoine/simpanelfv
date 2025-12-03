@@ -54,7 +54,7 @@ mask &= (df[col_fecha].dt.hour >= hour_range[0]) & (df[col_fecha].dt.hour <= hou
 df_filtrado = df.loc[mask]
 
 if df_filtrado.empty:
-    st.warning("⚠️ No hay datos para el rango de fechas/horas seleccionado.")
+    st.warning("No hay datos para el rango de fechas/horas seleccionado.")
     st.stop()
 
 st.success(f"Mostrando **{len(df_filtrado)}** registros desde {start_date} hasta {end_date}.")
@@ -65,7 +65,7 @@ fig1.add_trace(go.Scatter(
     x=df_filtrado[col_fecha], 
     y=df_filtrado['Potencia_Salida_kW'],
     name="Potencia (kW)",
-    line=dict(color='lime', width=2),
+    line=dict(color='red', width=2),
     fill='tozeroy' 
 ))
 
