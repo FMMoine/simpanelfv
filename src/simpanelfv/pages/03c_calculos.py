@@ -27,20 +27,20 @@ df_ejemplo = pd.DataFrame({
 
 st.table(df_ejemplo)
 
-# GENERAR EL ARCHIVO EXCEL EN MEMORIA
+# GENERAR EL ARCHIVO EXCEL 
 try:
     output = BytesIO()
-        with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
         df_ejemplo.to_excel(writer, index=False, sheet_name='Datos_Clima')
     
-        data_excel = output.getvalue()
+    data_excel = output.getvalue()
         # BOTÓN DE DESCARGA 
-        st.download_button(
+    st.download_button(
         label="Descargar Plantilla Excel (.xlsx)",
         data=data_excel,
         file_name="plantilla_clima_ejemplo.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
+    )
 
 except Exception as e:
     # Si falla la creación del Excel, ofrecemos CSV
@@ -51,4 +51,4 @@ except Exception as e:
         data=csv,
         file_name="plantilla_clima.csv",
         mime="text/csv"
-        )
+    )
