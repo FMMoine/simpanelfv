@@ -30,7 +30,6 @@ st.table(df_ejemplo)
 # GENERAR EL ARCHIVO EXCEL EN MEMORIA
 try:
     output = BytesIO()
-    
         with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
         df_ejemplo.to_excel(writer, index=False, sheet_name='Datos_Clima')
     
