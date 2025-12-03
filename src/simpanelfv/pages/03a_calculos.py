@@ -38,48 +38,89 @@ if st.button("Ejecutar Simulación", type="primary"):
     with st.spinner("Calculando potencia generada..."):
 
         generador = GenPanFV(Ppico=Ppico, N=N, kp=kp, eta=eta, Pinv=Pinv, mu=mu)
+        potencias = generador.pot_generada_rango(df_input['G'], df_input['T'])
 
-        potencias = generador.pot_generada_rango(df['G'], df['T'])
+       # Crear copia
+        df_resultado = df_input.copy()
+        df_resultado['Potencia_Salida_kW'] = potencias
         
+        # GUARDAR
+        st.session_state['resultado_simulacion'] = df_resultado
+        st.session_state['simulacion_lista'] = True
 
-        df['Potencia_Salida_kW'] = potencias
-         
-         #resultados
-        st.divider()
-        st.subheader("Métricas de Rendimiento")
+#VISUALIZACIÓN Y FILTROS 
+if st.session_state.get('simulacion_lista'):
+    df = st.session_state['resultado_simulacion']
+    st.divider()
+    st.subheader("🔍 Análisis de Resultados")
+    
+    with st.expander("Filtros de Fecha y Hora", expanded=True):
+        col_filtro1, col_filtro2 = st.columns(2)
+        col_fecha = 'Fecha' if 'Fecha' in df.columns else df.columns[0]
+        try:
+            df[col_fecha] = pd.to_datetime(df[col_fecha])
+        except:
+            st.error("No se pudo detectar el formato de fecha.")
+            st.stop()
+
+        #  Filtro de Fechas
+        min_date = df[col_fecha].min().date()
+        max_date = df[col_fecha].max().date()
+        
+        with col_filtro1:
+            start_date = st.date_input("Fecha Inicio", min_date, min_value=min_date, max_value=max_date)
+            end_date = st.date_input("Fecha Fin", max_date, min_value=min_date, max_value=max_date)
+
+        #  Filtro de Horas
+        with col_filtro2:
+            hora_rango = st.slider("Rango Horario", 0, 23, (6, 20)) # Por defecto de 6am a 8pm
+        
+        # APLICAR FILTROS
+        mask = (df[col_fecha].dt.date >= start_date) & (df[col_fecha].dt.date <= end_date)
+        mask &= (df[col_fecha].dt.hour >= hora_rango[0]) & (df[col_fecha].dt.hour <= hora_rango[1])
+        
+        df_filtrado = df.loc[mask]
+        
+        if df_filtrado.empty:
+            st.warning("⚠️ No hay datos en el rango seleccionado.")
+            st.stop()
+
+    
+    energia_filtrada = df_filtrado['Potencia_Salida_kW'].sum() * (10/60)
+    pot_max_filtrada = df_filtrado['Potencia_Salida_kW'].max()
            #Columnas
-        col1, col2, col3 = st.columns(3)
-        col1.metric("Energía Total Generada", f"{generador.energia():.2f} kWh")
-        col2.metric("Potencia Máxima", f"{generador.max_pot()[1]:.2f} kW")
-        col3.metric("Factor de Utilización", f"{generador.factor_de_utilizacion()*100:.2f} %")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Energía Total Generada", f"{generador.energia():.2f} kWh")
+    col2.metric("Potencia Máxima", f"{generador.max_pot()[1]:.2f} kW")
+    col3.metric("Factor de Utilización", f"{generador.factor_de_utilizacion()*100:.2f} %")
         
         # Gráfico 
-        st.subheader("Curva de Potencia")
-        col_x = 'Fecha' if 'Fecha' in df.columns else df.columns[0]
-        fig = px.line(
-            df, 
-            x=col_x, 
-            y='Potencia_Salida_kW',
-            title='Perfil de Generación de Potencia',
-            labels={col_x: 'Tiempo', 'Potencia_Salida_kW': 'Potencia (kW)'}
-        )
+    st.subheader("Curva de Potencia")
+    col_x = 'Fecha' if 'Fecha' in df.columns else df.columns[0]
+    fig = px.line(
+        df, 
+        x=col_x, 
+        y='Potencia_Salida_kW',
+        title='Perfil de Generación de Potencia',
+        labels={col_x: 'Tiempo', 'Potencia_Salida_kW': 'Potencia (kW)'}
+    )
         
-        # Personalización:
-        fig.update_traces(line_color='red', fill='tozeroy')
-        fig.update_layout(hovermode="x unified") # Muestra el valor al pasar el mouse
+    # Personalización:
+    fig.update_traces(line_color='red', fill='tozeroy')
+    fig.update_layout(hovermode="x unified") # Muestra el valor al pasar el mouse
         
-        st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True)
       
         
         # Tabla de datos
-        with st.expander("Ver tabla de resultados detallada"):
-            st.dataframe(df)
+    with st.expander("Ver tabla de resultados detallada"):
+        st.dataframe(df)
 
         # Botón para descargar resultados
-        csv = df.to_csv(index=False).encode('utf-8')
-        st.download_button(
-            label="Descargar Resultados en CSV",
-            data=csv,
-            file_name='resultados_simulacion.csv',
-            mime='text/csv',
-        )
+    csv = df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="Descargar Resultados en CSV",
+        data=csv,
+        file_name='resultados_simulacion.csv',
+        mime='text/csv',
+    )
