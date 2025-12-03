@@ -22,7 +22,7 @@ df = st.session_state['df_clima'].copy()
 
 if 'Potencia_Salida_kW' not in df.columns:
     st.info("ℹ️ Aún no has ejecutado la simulación.")
-    st.warning("Ve a la página **'3a Cálculos'** y presiona 'Ejecutar Simulación' para generar los datos de potencia.")
+    st.warning("Ve a la página **'Modelado'** y presiona 'Ejecutar Simulación' para generar los datos de potencia.")
     st.stop()
 
 col_fecha = 'Fecha' if 'Fecha' in df.columns else df.columns[0]
