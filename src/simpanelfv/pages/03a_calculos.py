@@ -28,7 +28,6 @@ Pinv = st.session_state['Pinv']
 eta = st.session_state['eta']
 mu = st.session_state['mu']
 
-
 df_input = st.session_state['df_clima']
 
 st.success(f"Datos listos: Simular {N} paneles ({Ppico}W) con {len(df)} registros de clima.")
@@ -88,39 +87,33 @@ if st.session_state.get('simulacion_lista'):
     
     energia_filtrada = df_filtrado['Potencia_Salida_kW'].sum() * (10/60)
     pot_max_filtrada = df_filtrado['Potencia_Salida_kW'].max()
+    horas_totales = len(df_filtrado) * (10/60)
+    energia_ideal = Pinv * horas_totales
+    fu_filtrado = (energia_filtrada / energia_ideal * 100) if energia_ideal > 0 else 0
            #Columnas
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Energía Total Generada", f"{generador.energia():.2f} kWh")
-    col2.metric("Potencia Máxima", f"{generador.max_pot()[1]:.2f} kW")
-    col3.metric("Factor de Utilización", f"{generador.factor_de_utilizacion()*100:.2f} %")
-        
-        # Gráfico 
-    st.subheader("Curva de Potencia")
-    col_x = 'Fecha' if 'Fecha' in df.columns else df.columns[0]
-    fig = px.line(
-        df, 
-        x=col_x, 
-        y='Potencia_Salida_kW',
-        title='Perfil de Generación de Potencia',
-        labels={col_x: 'Tiempo', 'Potencia_Salida_kW': 'Potencia (kW)'}
-    )
-        
-    # Personalización:
-    fig.update_traces(line_color='red', fill='tozeroy')
-    fig.update_layout(hovermode="x unified") # Muestra el valor al pasar el mouse
-        
-    st.plotly_chart(fig, use_container_width=True)
-      
-        
-        # Tabla de datos
-    with st.expander("Ver tabla de resultados detallada"):
-        st.dataframe(df)
+   c1, c2, c3 = st.columns(3)
+    c1.metric("Energía (Filtrada)", f"{energia_filtrada:.2f} kWh")
+    c2.metric("Potencia Máx", f"{pot_max_filtrada:.2f} kW")
+    c3.metric("Factor de Uso", f"{fu_filtrado:.1f} %")
 
-        # Botón para descargar resultados
-    csv = df.to_csv(index=False).encode('utf-8')
-    st.download_button(
-        label="Descargar Resultados en CSV",
-        data=csv,
-        file_name='resultados_simulacion.csv',
-        mime='text/csv',
+    # --- GRÁFICO (Usando df_filtrado) ---
+    st.subheader("Curva de Potencia")
+    
+    fig = px.line(
+        df_filtrado, 
+        x=col_fecha, 
+        y='Potencia_Salida_kW',
+        title=f'Generación ({start_date} al {end_date})',
+        labels={col_fecha: 'Tiempo', 'Potencia_Salida_kW': 'Potencia (kW)'}
     )
+    fig.update_traces(line_color='red', fill='tozeroy')
+    fig.update_layout(hovermode="x unified") 
+    
+    st.plotly_chart(fig, use_container_width=True)
+    
+    # --- DESCARGA ---
+    with st.expander("Ver tabla de datos"):
+        st.dataframe(df_filtrado)
+        
+    csv = df_filtrado.to_csv(index=False).encode('utf-8')
+    st.download_button("📥 Descargar CSV Filtrado", csv, "simulacion_filtrada.csv", "text/csv")
