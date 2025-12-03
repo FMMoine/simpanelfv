@@ -55,8 +55,21 @@ if st.button("Ejecutar Simulación", type="primary"):
         
         # Gráfico 
         st.subheader("Curva de Potencia")
-        fig = generador.graficar_pot()
-        st.pyplot(fig)
+        col_x = 'Fecha' if 'Fecha' in df.columns else df.columns[0]
+        fig = px.line(
+            df, 
+            x=col_x, 
+            y='Potencia_Salida_kW',
+            title='Perfil de Generación de Potencia',
+            labels={col_x: 'Tiempo', 'Potencia_Salida_kW': 'Potencia (kW)'}
+        )
+        
+        # Personalización:
+        fig.update_traces(line_color='lime', fill='tozeroy')
+        fig.update_layout(hovermode="x unified") # Muestra el valor al pasar el mouse
+        
+        st.plotly_chart(fig, use_container_width=True)
+      
         
         # Tabla de datos
         with st.expander("Ver tabla de resultados detallada"):
