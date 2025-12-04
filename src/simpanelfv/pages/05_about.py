@@ -1,10 +1,4 @@
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
 import streamlit as st
-import plotly.express as px
-
-from lib.fcn_base import lib_test, GenPanFV
 
 st.write("""
     Miembros y Contactos:
@@ -13,6 +7,7 @@ st.write("""
 - Leonel Oldrini: loldrini@frsf.ut.edu.ar
 
 Licencia MIT
-Repositorio Github Privado
+
+Repositorio Github de Acceso Público, Disponible en: https://github.com/FMMoine/simpanelfv
 
             """)
