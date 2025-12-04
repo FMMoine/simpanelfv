@@ -20,9 +20,9 @@ if 'mu' not in st.session_state:
 if 'simulacion_realizada' not in st.session_state:
     st.session_state['simulacion_realizada'] = False
 st.write("""
-        # SimPanelFV
-        Simulador de generación de equipo de paneles fotovoltaicos
- ## Caracterísitcas de la App
+# SimPanelFV
+Simulador de generación de equipo de paneles fotovoltaicos
+## Caracterísitcas de la App
 ## Esta aplicación contiene las siguientes características:
 - Configuración Personalizada: El usuario puede ingresar manualmente las especificaciones técnicas y características operativas del sistema generador que desea simular.
 - 	Configuración Predefinida: Se ofrece la opción de utilizar un perfil predefinido, basado en los parámetros técnicos del generador perteneciente a la UTN Facultad Regional Santa Fe.
@@ -36,6 +36,4 @@ La aplicación basará su enfoque al analisis físico-energtico y la facilidad d
 - Ánalisis Economico: No realiza cálculos de viabilidad financiera, retorno de la inversión, costos de instalación o amortización, ya que  depended de variables externas (tarifas eléctricas, costos, impuestos) que son volátiles y escapan al alcance de este simulador.
 
 - Dimensionamiento Automático: Simpanelfv es una herramienta de simulación y validación, no de diseño o dimensionamiento automático. La aplicación no sugiere una configuración óptima de paneles basada en un perfil de consumo.
-
-- Análisis de Sombras y "Balance of System" (BOS): La simulación no contempla pérdidas de rendimiento ocasionadas por sombreado de objetos externos. Asimismo, el cálculo se centra en el rendimiento ideal del panel basado en la irradiancia y los datos del fabricante, sin simular las pérdidas específicas de componentes eléctricos del BOS.
- """)
+""")

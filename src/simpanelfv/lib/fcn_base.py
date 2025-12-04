@@ -6,6 +6,29 @@ def lib_test():
     """
     Función de testeo para verificar que el módulo se importa correctamente.
     """
+
+    gen_facultad = GenPanFV(240, 12, -4.4e-3, 0.97, 2.5, 2)
+
+    pot_punt = gen_facultad.pot_modelo_GFV(750, 25)
+    print(pot_punt)
+
+    datos = pd.read_excel("data/Datos_climatologicos_Santa_Fe_2019.xlsx", index_col=0)
+    # print(datos)
+    lista_G = datos['Irradiancia (W/m²)']
+    lista_T = datos['Temperatura (°C)']
+    # Irradiancia (W/m²)  Temperatura (°C)
+
+    gen_facultad.pot_generada_rango(lista_G,lista_T)
+    pot_rang = gen_facultad.listaP
+
+    print("Rango de Potencias")
+    print(pot_rang, type(pot_rang))
+
+    plt.plot(pot_rang)
+    plt.show()
+
+    print(gen_facultad.pot_media(), gen_facultad.energia())
+
     print("El módulo fcn_base.py se ha cargado correctamente.")
 
 
