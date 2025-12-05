@@ -14,4 +14,4 @@ st.write("""
 
 if st.button(label='Presiona para contenido adicional', type="primary"):
     st.balloons()
-    st.write("Otro curioso que presiona el botón")
+    st.dialog("Otro curioso que presiona el botón")
