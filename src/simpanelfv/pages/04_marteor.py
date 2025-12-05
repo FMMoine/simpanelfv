@@ -47,7 +47,7 @@ de los módulos para referenciar ciertas características técnicas. Normalmente
 - st.latex(r"""T_r"""): st.write("""Temperatura de referencia, en Celsius. Es una temperatura utilizada por los
 fabricantes de los módulos para referenciar ciertos parámetros que dependen de la
 misma. Normalmente""") st.latex(r"""T_r = 25 [◦C])""").
-- st.latex(T_c):st.write(""" Temperatura de la celda, en Celsius. Es la temperatura de los componentes
+- st.latex(r"""T_c"""):st.write(""" Temperatura de la celda, en Celsius. Es la temperatura de los componentes
 semiconductores que conforman cada módulo fotovoltaico.""")
 - st.latex(r"""P_{pico}"""): st.write("""Potencia pico de cada módulo, en Watt. Se interpreta como la potencia eléctrica
 que entrega un módulo cuando""") st.latex(r"""G""") st.write("""coincide con""") st.latex(r"""G_{std}""") 
