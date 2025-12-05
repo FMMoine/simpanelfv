@@ -16,7 +16,7 @@ with col1:
                               value=def_N, step=1, min_value=1)
     # Potencia pico
     input_Ppico = st.number_input("Potencia Pico del módulo (W)", 
-                                  value=def_Ppico, step=10.0)
+                                  value=def_Ppico, step=10.0, min_value=10.0)
     # Coeficiente de temperatura
     input_kp = st.number_input("Coeficiente de Temp. (kp) [1/°C]", 
                                value=def_kp, step=0.0001, format="%.4f")
@@ -24,13 +24,13 @@ with col2:
     st.subheader("Datos del Inversor")
     # Potencia Inversor
     input_Pinv = st.number_input("Potencia Nominal Inversor (kW)", 
-                                 value=def_Pinv, step=0.5)
+                                 value=def_Pinv, step=0.5, min_value=0.5)
     # Rendimiento
     input_eta = st.number_input("Rendimiento Global (eta) [0-1]", 
-                                value=def_eta, step=0.01, max_value=1.0)
+                                value=def_eta, step=0.01, min_value=0.01, max_value=1.0)
     # Umbral mínimo
     input_mu = st.number_input("Umbral mínimo de arranque (%)", 
-                               value=def_mu, step=0.5)
+                               value=def_mu, step=0.5, min_value=0.5, max_value=100.0)
 st.divider()
 
 # Boton Config. Predeterminada

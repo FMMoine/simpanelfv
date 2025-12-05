@@ -37,4 +37,25 @@ else:
          st.info("Esperando carga de archivo")
 
 with st.expander("Configuraciones adicionales"):
-        None
+        def_CostoInst = st.session_state.get('CostoInst', 1000000.0)
+        def_CostoEn = st.session_state.get('CostoEn', 1.0)
+        def_CalcAmort = st.session_state.get('CalcAmort', False)
+        input_CalcAmort = st.checkbox(label="Calcular si se logra la amortización del equipo")
+        # Costo de la Instalacion
+        input_CostoInst = st.number_input("Costo total de la instalación (Elegir una unidad monetaria, como ARS$)", 
+                              value=def_CostoInst, step=100.0, min_value=0.01)
+        # Ahorro anual
+        input_CostoEn = st.number_input("Costo por cada kWh, tomado como fijo (Emplear misma unidad monetaria que para el costo total)", 
+                                  value=def_CostoEn, step=0.5, min_value=0.01)
+        
+        if st.button("Guardar Configuración", type="primary"):
+    
+                # Guardamos los valores que escribió el usuario
+                st.session_state['CostoInst'] = input_CostoInst
+                st.session_state['CostoEn'] = input_CostoEn
+                st.session_state['CalcAmort'] = input_CalcAmort
+                
+                st.session_state['config_adicional_guardada'] = True
+
+                st.success("¡Configuración adicional guardada correctamente!")
+                st.info("Proceder con los cálculos")

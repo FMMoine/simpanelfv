@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 
-from lib.fcn_base import lib_test, GenPanFV
+from lib.fcn_base import GenPanFV
 
 st.write("""
 # Cálculos y Resultados
@@ -98,6 +98,8 @@ if st.session_state.get('simulacion_lista'):
     
     energia_filtrada = df_filtrado['Potencia_Salida_kW'].sum() * (10/60)
     pot_max_filtrada = df_filtrado['Potencia_Salida_kW'].max()
+
+    st.session_state['EnCalc'] = energia_filtrada
     
 
     horas_totales = len(df_filtrado) * (10/60)

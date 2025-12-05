@@ -2,6 +2,8 @@ import streamlit as st
 
 if 'config_guardada' not in st.session_state:
     st.session_state['config_guardada'] = False
+if 'config_adicional_guardada' not in st.session_state:
+    st.session_state['config_adicional_guardada'] = False
 
 if 'N' not in st.session_state:
     st.session_state['N'] = 10          # Cantidad de paneles
@@ -15,10 +17,20 @@ if 'Pinv' not in st.session_state:
     st.session_state['Pinv'] = 3.0     # Potencia Inversor
 if 'mu' not in st.session_state:
     st.session_state['mu'] = 2.0       # Umbral mínimo
+if 'CostoInst' not in st.session_state:
+    st.session_state['CostoInst'] = 1000000.0     # Costo de la instalacion
+if 'CostoEn' not in st.session_state:
+    st.session_state['CostoEn'] = 0.5       # Costo del kWh
+if 'CalcAmort' not in st.session_state:
+    st.session_state['CalcAmort'] = False       # Calcular Amortizacion
+if 'EnCalc' not in st.session_state:
+    st.session_state['EnCalc'] = 1       # Calcular Amortizacion
+
 
 # Variables de simulación (Resultados)
 if 'simulacion_realizada' not in st.session_state:
     st.session_state['simulacion_realizada'] = False
+    
 st.write("""
 # SimPanelFV
 Simulador de generación de equipo de paneles fotovoltaicos

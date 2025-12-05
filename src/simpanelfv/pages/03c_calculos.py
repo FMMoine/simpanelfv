@@ -46,3 +46,23 @@ except Exception as e:
         file_name="plantilla_clima.csv",
         mime="text/csv"
     )
+
+print(st.session_state['CostoInst'])
+print("Termino Rerun")
+
+if st.session_state.get('config_adicional_guardada') and st.session_state.get('CalcAmort'):
+    CostoInst = st.session_state['CostoInst']
+    CostoEn = st.session_state['CostoEn']
+    EnCalc = st.session_state['EnCalc']
+    st.write("""
+                ## Amortización de la instalación:
+            """)
+        
+    ahorro_amort = (CostoEn * EnCalc)
+
+    if ahorro_amort >= CostoInst:
+        st.write("Se logró alcanzar la amortización de la instalación a través del ahorro mediante la generación propia de energía durante el rango total provisto")
+        st.write("Ahorro generado - Costo de la instalación: ", ahorro_amort - CostoInst)
+    else:
+        st.write("El período de generación no es suficiente para amortizar la instalación")
+        st.write("Déficit (Ahorro conseguido - Costo de la Instalación): ", ahorro_amort - CostoInst)
