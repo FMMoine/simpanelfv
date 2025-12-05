@@ -6,7 +6,7 @@ st.write("""
 - Gonzalo Morel: gmorel@frsf.utn.edu.ar
 - Leonel Oldrini: loldrini@frsf.ut.edu.ar
 
-Licencia MIT
+MIT License Copyright (c) 2025 Simpanelfv
 
 Repositorio Github de Acceso Público, Disponible en: https://github.com/FMMoine/simpanelfv
 
