@@ -37,30 +37,30 @@ y baterías necesitas.
 st. latex (r"""P[\text{kW}] = N \cdot \frac{G}{G_{\text{std}}} \cdot P_{\text{pico}} \cdot \left[ 1 + k_p \cdot (T_c - T_r) \right] \cdot \eta \cdot 10^{-3}""")
 
 st.write("""donde:""")
-- st.latex(r"""N"""):st.write("""Cantidad total de paneles en el arreglo.""")
-- st.latex(r"""G"""): st.write("""Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
+st.latex(r"""N"""):st.write("""Cantidad total de paneles en el arreglo.""")
+ st.latex(r"""G"""): st.write("""Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
 La irradiancia mide el flujo de energía proveniente de la radiación solar (sea de forma
 directa o indirecta) por unidad de superficie incidente.""")
-- st.latex(r"""G_{std}"""):st.write(""" Irradiancia estándar, en W/m2. Es un valor de irradiancia que utilizan los fabricantes
+ st.latex(r"""G_{std}"""):st.write(""" Irradiancia estándar, en W/m2. Es un valor de irradiancia que utilizan los fabricantes
 de los módulos para referenciar ciertas características técnicas. Normalmente """)
-- st.latex(r"""G_{std} = 1000 [W/m2]""").
-- st.latex(r"""T_r"""): st.write("""Temperatura de referencia, en Celsius. Es una temperatura utilizada por los
+st.latex(r"""G_{std} = 1000 [W/m2]""").
+st.latex(r"""T_r"""): st.write("""Temperatura de referencia, en Celsius. Es una temperatura utilizada por los
 fabricantes de los módulos para referenciar ciertos parámetros que dependen de la
-misma. Normalmente""") st.latex(r"""T_r = 25 [◦C])""").
-- st.latex(r"""T_c"""):st.write(""" Temperatura de la celda, en Celsius. Es la temperatura de los componentes
+misma. Normalmente""") $T_r = 25 [◦C])$.
+st.latex(r"""T_c"""):st.write(""" Temperatura de la celda, en Celsius. Es la temperatura de los componentes
 semiconductores que conforman cada módulo fotovoltaico.""")
-- st.latex(r"""P_{pico}"""): st.write("""Potencia pico de cada módulo, en Watt. Se interpreta como la potencia eléctrica
-que entrega un módulo cuando""") st.latex(r"""G""") st.write("""coincide con""") st.latex(r"""G_{std}""") 
-st.write("""y cuando""") st.latex(r"""T_c""") st.write("""coincide con""") st.latex(r"""T_r""")st.write(""", en
+st.latex(r"""P_{pico}"""): st.write("""Potencia pico de cada módulo, en Watt. Se interpreta como la potencia eléctrica
+que entrega un módulo cuando""") $G$ st.write("""coincide con""")$G_{std}$ 
+st.write("""y cuando""") $T_c$ st.write("""coincide con""") $T_r$ st.write(""", en
 ausencia de viento y sin que el panel se vincule a otros componentes eléctricos que
 afecten el desempeño de la instalación. Constituye la potencia nominal bajo la cual
 los módulos son comercializados.""")
-- st.latex(r"""kp"""):st.write(""" Coeficiente de temperatura-potencia, en""") st.latex(r"""◦C^{−1}"""). st.write("""Es un parámetro negativo que
-refleja cómo incide la temperatura de la celda en el rendimiento del""") st.latex(r"""GFV""").st.write(""" Se observa
-que incrementos (disminuciones) de""") st.latex(r"""T_c""") st.write("""producen, en consecuencia, disminuciones
-(incrementos) de""") st.latex(r"""P""").
-- st.latex(r"""η"""): st.write("""Rendimiento global de la instalación “por unidad” (valor ideal:""") st.latex(1)st.write("""). Se utiliza para
-considerar el efecto de sombras parciales sobre el""") st.latex(r"""GFV""")st.write(""", suciedad sobre la superficie
+st.latex(r"""kp"""): st.write(""" Coeficiente de temperatura-potencia, en""") $◦C^{−1}$. st.write("""Es un parámetro negativo que
+refleja cómo incide la temperatura de la celda en el rendimiento del""") $GFV$ st.write(""" Se observa
+que incrementos (disminuciones) de""") $T_c$ st.write("""producen, en consecuencia, disminuciones
+(incrementos) de""") $P$
+st.latex(r"""η"""): st.write("""Rendimiento global de la instalación “por unidad” (valor ideal:""") $1$ st.write("""). Se utiliza para
+considerar el efecto de sombras parciales sobre el""") $GFV$ st.write(""", suciedad sobre la superficie
 de los módulos y, fundamentalmente, el rendimiento del equipo controlador-inversor.
 Los inversores contemplados por el modelo también incluyen el sistema 
 de control para maximizar la potencia de salida.
@@ -69,17 +69,17 @@ de control para maximizar la potencia de salida.
 
 st.latex(r"""T_c = T + 0.031 \left[^\circ C \, m^2/W \right] \cdot G""")
 st.write("""donde:""")
-- st.latex(r"""T_c"""): st.write("""La Temperatura de la celda en""") st.latex(r"""[°C]""").
-- st.latex(r"""G"""): st.write("""Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en""") st.latex(r"""W/m^2""").
+st.latex(r"""T_c"""): st.write("""La Temperatura de la celda en""") $[°C]$.
+st.latex(r"""G"""): st.write("""Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en""") $W/m^2$.
 st.write("""La irradiancia mide el flujo de energía proveniente de la radiación solar (sea de forma
 directa o indirecta) por unidad de superficie incidente.
 
 ### Limites de generación.
 Los circuitos inversores funcionan adecuadamente siempre que la producción, en términos
-de potencia, supere un umbral mínimo""") st.latex(r"""μ""")st.write(""", habitualmente expresado en forma porcentual,
-en relación a la potencia nominal""") st.latex(r"""P_{inv}""") st.write("""del equipo. Si este umbral no es superado, la instalación
-no entrega potencia eléctrica. Asimismo, el valor""") st.latex(r"""P_{inv}""") st.write("""(en kilo-Watt) opera como
-límite superior del""") st.latex(r"""GFV"""). st.write("""En consecuencia, la potencia real Pr que entrega la instalación se
+de potencia, supere un umbral mínimo""") $μ$ st.write(""", habitualmente expresado en forma porcentual,
+en relación a la potencia nominal""") $P_{inv}$ st.write("""del equipo. Si este umbral no es superado, la instalación
+no entrega potencia eléctrica. Asimismo, el valor""") $P_{inv}$ st.write("""(en kilo-Watt) opera como
+límite superior del""") $GFV$ st.write("""En consecuencia, la potencia real Pr que entrega la instalación se
 puede calcular como:""")
 
 st.latex(r"""P_{\min} [kW] = \frac{\mu(\%)}{100} \cdot P_{inv}""")
