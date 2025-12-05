@@ -53,6 +53,7 @@ if df_filtrado.empty:
     st.stop()
 
 st.success(f"Mostrando **{len(df_filtrado)}** registros del periodo seleccionado.")
+st.info(f"Recuerde que el filtrado de fechas se encuentra en la barra lateral izquierda, debajo del apartado de navegación")
 
 #GRÁFICOS INTERACTIVOS
 

@@ -26,7 +26,7 @@ Esta aplicación contiene las siguientes características:
 ### Limitaciones
 La aplicación basará su enfoque al analisis físico-energtico y la facilidad de su uso, por lo cual  se excluyen las siguentes funcionalidades del proyecto.
 
-- Ánalisis Economico: No realiza cálculos de viabilidad financiera, retorno de la inversión, costos de instalación o amortización, ya que  depended de variables externas (tarifas eléctricas, costos, impuestos) que son volátiles y escapan al alcance de este simulador.
+- Ánalisis Economico: No realiza cálculos de viabilidad financiera, retorno de la inversión, costos de instalación, ya que  depended de variables externas (tarifas eléctricas, costos, impuestos) que son volátiles y escapan al alcance de este simulador. Posee un apartado simplificado para estimar si el ahorro en la energía generada supera el costo de la instalación para el período completo de generación.
 
 - Dimensionamiento Automático: Simpanelfv es una herramienta de simulación y validación, no de diseño o dimensionamiento automático. La aplicación no sugiere una configuración óptima de paneles basada en un perfil de consumo.
 
@@ -40,4 +40,5 @@ Copyright (c) 2025 Simpanelfv
 - Leonel Oldrini: loldrini@frsf.ut.edu.ar
 ## Link
 https://simpanelfv-utn-frsf.streamlit.app/
+
 ![simpanelfv flyer](img/SimpanelFV1.png)
