@@ -19,7 +19,7 @@ def lib_test():
     # Irradiancia (W/m²)  Temperatura (°C)
 
     gen_facultad.pot_generada_rango(lista_G,lista_T)
-    pot_rang = gen_facultad.listaP
+    pot_rang = gen_facultad.__listaP
 
     print("Rango de Potencias")
     print(pot_rang, type(pot_rang))
@@ -52,7 +52,11 @@ class GenPanFV:
         self.P_min = (self.mu / 100) * self.Pinv 
         
         # Array para almacenar la última serie de potencias calculada
-        self.listaP = np.array([]) 
+        self.__listaP = None
+
+    @property
+    def listaP(self):
+        return self.__listaP
 
     def _calcular_potencia_bruta(self, G, T):
         """
@@ -105,31 +109,31 @@ class GenPanFV:
         P_final = np.where(P_limitada > self.Pinv, self.Pinv, P_limitada)
         
         # Guardar el resultado en la instancia y devolverlo
-        self.listaP = P_final
-        return self.listaP
+        self.__listaP = P_final.tolist()
+        return self.__listaP
 
     def pot_media(self):
         """
         Devuelve la potencia media (en kW) de la última simulación
         almacenada en self.listaP.
         """
-        if self.listaP.size == 0:
+        if self.__listaP is None:
             return 0.0
-        return self.listaP.mean()
+        return np.mean(self.__listaP)
 
     def energia(self):
         """
         Devuelve la energía total generada (en kWh) de la última simulación,
         asumiendo intervalos de 10 minutos (1/6 de hora).
         """
-        if self.listaP.size == 0:
+        if self.__listaP is None:
             return 0.0
         
         # Intervalo de tiempo en horas (10 min = 1/6 h)
         intervalo_h = 10 / 60
         
         # Energía = Suma de (Potencia_i * intervalo_h)
-        nrg = self.listaP.sum() * intervalo_h
+        nrg = np.sum(self.__listaP.sum * intervalo_h)
         return nrg
 
     def factor_de_utilizacion(self):
@@ -140,14 +144,14 @@ class GenPanFV:
         """
         energia_generada = self.energia()
         
-        if self.listaP.size == 0:
+        if self.__listaP is None:
             return 0.0
             
         # Intervalo de tiempo en horas (10 min = 1/6 h)
         intervalo_h = 10 / 60
         
         # Energía nominal = Potencia del INVERSOR * tiempo total
-        tiempo_total_h = len(self.listaP) * intervalo_h
+        tiempo_total_h = len(self.__listaP) * intervalo_h
         energia_nominal_inversor = self.Pinv * tiempo_total_h
 
         if energia_nominal_inversor == 0:
@@ -161,11 +165,11 @@ class GenPanFV:
         Devuelve una tupla (índice, valor) de la potencia máxima
         identificada en la última simulación.
         """
-        if self.listaP.size == 0:
+        if self.__listaP.size == 0:
             return (0, 0.0)
             
-        max_P_val = self.listaP.max()
-        max_P_idx = self.listaP.argmax()
+        max_P_val = np.max(self.__listaP)
+        max_P_idx = np.argmax(self.__listaP)
         return (max_P_idx, max_P_val)
 
     def graficar_pot(self):
@@ -175,12 +179,12 @@ class GenPanFV:
         """
         fig, ax = plt.subplots(figsize=(10, 6))
         
-        if self.listaP.size > 0:
-            n_puntos = len(self.listaP)
+        if len(self.__listaP) > 0:
+            n_puntos = len(self.__listaP)
             # El tiempo total es n_puntos * 10 minutos. Lo pasamos a horas.
             tiempo_horas = np.arange(0, n_puntos * 10 / 60, 10 / 60)
             
-            ax.plot(tiempo_horas, self.listaP, label='Potencia Generada')
+            ax.plot(tiempo_horas, self.__listaP, label='Potencia Generada')
             
             # Líneas de referencia
             ax.axhline(y=self.Pinv, color='r', linestyle='--', label=f'Pot. Nominal Inversor ({self.Pinv} kW)')
@@ -196,91 +200,3 @@ class GenPanFV:
                     horizontalalignment='center', verticalalignment='center', transform=ax.transAxes)
             
         return fig
-
-
-def pot_modelo_GFV(G, T, N, Ppico, eta, kp, Pinv, mu=2, Gstd=1000, Tr=25):
-    """
-    Devuelve la potencia generada por un GFV con los datos indicados,
-    cuando la irradiancia es G y la temperatura ambiente es T.
-    Aplica los límites del inversor.
-    """
-    # 1. Crear la instancia del generador
-    gen = GenPanFV(Ppico, N, kp, eta, Pinv, mu, Gstd, Tr)
-    # 2. Llamar al método de la clase
-    return gen.pot_modelo_GFV(G, T)
-
-def pot_generada_rango(lista_G, lista_T, N, Ppico, eta, kp, Pinv, mu=2,
-Gstd=1000, Tr=25):
-    """
-    Recibe listas de irradiancia y temperatura, y devuelve una lista
-    con las potencias generadas para cada par de valores.
-    """
-    # 1. Crear la instancia del generador
-    gen = GenPanFV(Ppico, N, kp, eta, Pinv, mu, Gstd, Tr)
-    # 2. Llamar al método de la clase y devolver el array
-    # Se convierte a lista por si la consigna es estricta, aunque numpy array es mejor
-    return list(gen.pot_generada_rango(lista_G, lista_T))
-
-def pot_media(lista_G, lista_T, N, Ppico, eta, kp, Pinv, mu=2, Gstd=1000,
-Tr=25):
-    """
-    Devuelve la potencia media del rango de datos provisto.
-    """
-    # 1. Crear la instancia del generador
-    gen = GenPanFV(Ppico, N, kp, eta, Pinv, mu, Gstd, Tr)
-    # 2. Calcular el rango (esto guarda el resultado en gen.listaP)
-    gen.pot_generada_rango(lista_G, lista_T)
-    # 3. Llamar al método de la clase
-    return gen.pot_media()
-
-def energia(lista_G, lista_T, N, Ppico, eta, kp, Pinv, mu=2, Gstd=1000,
-Tr=25):
-    """
-    Devuelve la energía generada (en kWh) para el rango de datos,
-    asumiendo intervalos de 10 minutos.
-    """
-    # 1. Crear la instancia del generador
-    gen = GenPanFV(Ppico, N, kp, eta, Pinv, mu, Gstd, Tr)
-    # 2. Calcular el rango (esto guarda el resultado en gen.listaP)
-    gen.pot_generada_rango(lista_G, lista_T)
-    # 3. Llamar al método de la clase
-    return gen.energia()
-
-def factor_de_utilizacion(lista_G, lista_T, N, Ppico, eta, kp, Pinv, mu=2,
-Gstd=1000, Tr=25):
-    """
-    Devuelve el factor de utilización (energía generada / energía
-    nominal del inversor en el mismo período).
-    """
-    # 1. Crear la instancia del generador
-    gen = GenPanFV(Ppico, N, kp, eta, Pinv, mu, Gstd, Tr)
-    # 2. Calcular el rango (esto guarda el resultado en gen.listaP)
-    gen.pot_generada_rango(lista_G, lista_T)
-    # 3. Llamar al método de la clase
-    return gen.factor_de_utilizacion()
-
-def max_pot(lista_G, lista_T, N, Ppico, eta, kp, Pinv, mu=2,
-Gstd=1000, Tr=25):
-    """
-    Devuelve una tupla (índice, valor) de la potencia máxima
-    identificada en el rango.
-    """
-    # 1. Crear la instancia del generador
-    gen = GenPanFV(Ppico, N, kp, eta, Pinv, mu, Gstd, Tr)
-    # 2. Calcular el rango (esto guarda el resultado en gen.listaP)
-    gen.pot_generada_rango(lista_G, lista_T)
-    # 3. Llamar al método de la clase
-    return gen.max_pot()
-
-def graficar_pot(lista_G, lista_T, N, Ppico, eta, kp, Pinv, mu=2,
-Gstd=1000, Tr=25):
-    """
-    Genera y devuelve una figura de Matplotlib con la variación
-    temporal de la potencia generada.
-    """
-    # 1. Crear la instancia del generador
-    gen = GenPanFV(Ppico, N, kp, eta, Pinv, mu, Gstd, Tr)
-    # 2. Calcular el rango (esto guarda el resultado en gen.listaP)
-    gen.pot_generada_rango(lista_G, lista_T)
-    # 3. Llamar al método de la clase
-    return gen.graficar_pot()
