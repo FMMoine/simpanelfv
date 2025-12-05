@@ -34,46 +34,46 @@ y baterías necesitas.
 
 ## Formulas del cáculo
 ### Potencia Eléctrica Generada [Kw].
-P[\text{kW}] = N \cdot \frac{G}{G_{\text{std}}} \cdot P_{\text{pico}} \cdot \left[ 1 + k_p \cdot (T_c - T_r) \right] \cdot \eta \cdot 10^{-3}
+st. latex (P[\text{kW}] = N \cdot \frac{G}{G_{\text{std}}} \cdot P_{\text{pico}} \cdot \left[ 1 + k_p \cdot (T_c - T_r) \right] \cdot \eta \cdot 10^{-3})
 
 donde:
-- N: Cantidad total de paneles en el arreglo.
-- G: Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
+- st.latex(N): Cantidad total de paneles en el arreglo.
+- st.latex(G): Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
 La irradiancia mide el flujo de energía proveniente de la radiación solar (sea de forma
 directa o indirecta) por unidad de superficie incidente.
-- Gstd: Irradiancia estándar, en W/m2. Es un valor de irradiancia que utilizan los fabricantes
+- st.latex(G_{std}): Irradiancia estándar, en W/m2. Es un valor de irradiancia que utilizan los fabricantes
 de los módulos para referenciar ciertas características técnicas. Normalmente
-- Gstd = 1000 [W/m2].
-- Tr: Temperatura de referencia, en Celsius. Es una temperatura utilizada por los
+- st.latex(G_{std} = 1000 [W/m2]).
+- st.latex(T_r): Temperatura de referencia, en Celsius. Es una temperatura utilizada por los
 fabricantes de los módulos para referenciar ciertos parámetros que dependen de la
-misma. Normalmente Tr = 25 [◦C].
-- Tc: Temperatura de la celda, en Celsius. Es la temperatura de los componentes
+misma. Normalmente st.latex(T_r = 25 [◦C]).
+- st.latex(T_c): Temperatura de la celda, en Celsius. Es la temperatura de los componentes
 semiconductores que conforman cada módulo fotovoltaico.
-- Ppico: Potencia pico de cada módulo, en Watt. Se interpreta como la potencia eléctrica
-que entrega un módulo cuando G coincide con Gstd y cuando Tc coincide con Tr, en
+- st.latex(P_{pico}): Potencia pico de cada módulo, en Watt. Se interpreta como la potencia eléctrica
+que entrega un módulo cuando st.latex(G) coincide con st.latex(G_{std}) y cuando Tc coincide con st.latex(T_r), en
 ausencia de viento y sin que el panel se vincule a otros componentes eléctricos que
 afecten el desempeño de la instalación. Constituye la potencia nominal bajo la cual
 los módulos son comercializados.
-- kp: Coeficiente de temperatura-potencia, en ◦C−1. Es un parámetro negativo que
-refleja cómo incide la temperatura de la celda en el rendimiento del GFV. Se observa
-que incrementos (disminuciones) de Tc producen, en consecuencia, disminuciones
-(incrementos) de P.
-- η: Rendimiento global de la instalación “por unidad” (valor ideal: 1). Se utiliza para
-considerar el efecto de sombras parciales sobre el GFV, suciedad sobre la superficie
+- st.latex(kp): Coeficiente de temperatura-potencia, en st.latex(◦C^{−1}). Es un parámetro negativo que
+refleja cómo incide la temperatura de la celda en el rendimiento del st.latex(GFV). Se observa
+que incrementos (disminuciones) de st.latex(T_c) producen, en consecuencia, disminuciones
+(incrementos) de st.latex(P).
+- st.latex(η): Rendimiento global de la instalación “por unidad” (valor ideal: st.latex(1)). Se utiliza para
+considerar el efecto de sombras parciales sobre el st.latex(GFV), suciedad sobre la superficie
 de los módulos y, fundamentalmente, el rendimiento del equipo controlador-inversor.
 Los inversores contemplados por el modelo también incluyen el sistema 
 de control para maximizar la potencia de salida.
 
 ### Temperatura de la celda
 
-T_c = T + 0.031 \left[^\circ C \, m^2/W \right] \cdot G
+st.latex(T_c = T + 0.031 \left[^\circ C \, m^2/W \right] \cdot G)
 donde:
-- T_c: La Temperatura de la celda en [°C].
-- G: Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
+- st.latex(T_c): La Temperatura de la celda en st.latex([°C]).
+- st.latex(G): Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
 La irradiancia mide el flujo de energía proveniente de la radiación solar (sea de forma
 directa o indirecta) por unidad de superficie incidente.
 
-###Limites de generación
+### Limites de generación.
 Los circuitos inversores funcionan adecuadamente siempre que la producción, en términos
 de potencia, supere un umbral mínimo μ, habitualmente expresado en forma porcentual,
 en relación a la potencia nominal Pinv del equipo. Si este umbral no es superado, la instalación
@@ -81,12 +81,12 @@ no entrega potencia eléctrica. Asimismo, el valor Pinv (en kilo-Watt) opera com
 límite superior del GFV. En consecuencia, la potencia real Pr que entrega la instalación se
 puede calcular como:
 
-P_{\min} [kW] = \frac{\mu(\%)}{100} \cdot P_{inv}
+st.latex(P_{\min} [kW] = \frac{\mu(\%)}{100} \cdot P_{inv})
 
-P_r [kW] = 
+st.latex(P_r [kW] = 
 \begin{cases} 
 0 & \text{si } P \leq P_{\min} \\
 P & \text{si } P_{\min} < P \leq P_{inv} \\
 P_{inv} & \text{si } P > P_{inv}
-\end{cases}
+\end{cases})
 """)
