@@ -23,7 +23,7 @@ st.write("""
 # SimPanelFV
 Simulador de generación de equipo de paneles fotovoltaicos
 ## Caracterísitcas de la App
-## Esta aplicación contiene las siguientes características:
+### Esta aplicación contiene las siguientes características:
 - Configuración Personalizada: El usuario puede ingresar manualmente las especificaciones técnicas y características operativas del sistema generador que desea simular.
 - 	Configuración Predefinida: Se ofrece la opción de utilizar un perfil predefinido, basado en los parámetros técnicos del generador perteneciente a la UTN Facultad Regional Santa Fe.
 ### Interfaz gráfica

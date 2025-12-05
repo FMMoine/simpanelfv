@@ -31,7 +31,7 @@ mu = st.session_state['mu']
 
 df_input = st.session_state['df_clima'] 
 
-st.success(f"✅ Datos listos: Simular {N} paneles ({Ppico}W) con {len(df_input)} registros de clima.")
+st.success(f"✅ Datos listos: Simular sistema con {N} paneles de {Ppico}W, empleando {len(df_input)} registros de clima.")
 
 
 if st.button("Ejecutar Simulación", type="primary"):
@@ -90,7 +90,8 @@ if st.session_state.get('simulacion_lista'):
         df_filtrado = df.loc[mask]
         
         if df_filtrado.empty:
-            st.warning("⚠️ No hay datos en el rango seleccionado.")
+            st.warning("⚠️ No hay datos en el rango seleccionado. Verificar que el rango de fechas se corresponde con el de los datos ingresados y que la fecha de inicio sea anterior a la última fecha analizada")
+            st.info(f"Primer fecha detectada: {min_date}, Última fecha detectada: {max_date}")
             st.stop()
 
    

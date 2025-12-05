@@ -48,7 +48,8 @@ mask &= (df[col_fecha].dt.hour >= hour_range[0]) & (df[col_fecha].dt.hour <= hou
 df_filtrado = df.loc[mask]
 
 if df_filtrado.empty:
-    st.warning("⚠️ No hay datos para el rango seleccionado.")
+    st.warning("⚠️ No hay datos en el rango seleccionado. Verificar que el rango de fechas se corresponde con el de los datos ingresados y que la fecha de inicio sea anterior a la última fecha analizada")
+    st.info(f"Primer fecha detectada: {min_date}, Última fecha detectada: {max_date}")    
     st.stop()
 
 st.success(f"Mostrando **{len(df_filtrado)}** registros del periodo seleccionado.")
