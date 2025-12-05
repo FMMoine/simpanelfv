@@ -5,7 +5,7 @@ st.write("""
 # Datos de entrada y configuración de la información de salida
          """)
 
-arch_data = st.file_uploader(label='Carga Excel', accept_multiple_files=False)
+arch_data = st.file_uploader(label='Cargar Excel', accept_multiple_files=False)
 
 if arch_data is not None:
    try:
@@ -35,3 +35,6 @@ if arch_data is not None:
                            
 else:
          st.info("Esperando carga de archivo")
+
+with st.expander("Configuraciones adicionales"):
+        None

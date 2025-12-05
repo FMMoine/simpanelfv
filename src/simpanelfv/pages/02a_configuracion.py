@@ -32,6 +32,27 @@ with col2:
     input_mu = st.number_input("Umbral mínimo de arranque (%)", 
                                value=def_mu, step=0.5)
 st.divider()
+
+# Boton Config. Predeterminada
+if st.button("Utilizar Configuración Predeterminada (Generador UTN-FRSF)"):
+    st.session_state['N'] = 10
+    st.session_state['Ppico'] = 330.0
+    st.session_state['kp'] = -0.0040
+    st.session_state['Pinv'] = 3.0
+    st.session_state['eta'] = 0.90
+    st.session_state['mu'] = 2.0
+
+    st.session_state['config_guardada'] = True
+
+    st.success("""Se empleará la configuración por defecto:
+               \nNúmero de módulos (N): 10
+               \nPotencia Pico del módulo (W): 330.0 [W]
+               \nCoeficiente de Temp. (kp): -0.0040 [1/ºC]
+               \nPotencia Nominal Inversor (kW): 3.0
+               \nRendimiento Global (eta) [0-1]: 0.90
+               \nUmbral mínimo de arranque (%): 2.0
+               """)
+    st.info("Ahora podés ir al menú 'Datos de entrada y salida' para cargar el Excel con los datos del clima.")
 # --- 3. BOTÓN DE GUARDADO ---
 if st.button("Guardar Configuración", type="primary"):
     
