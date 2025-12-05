@@ -15,4 +15,5 @@ st.write("""
 if st.button(label='Presiona para contenido adicional', type="primary"):
     st.balloons()
     with st.popover("Otro curioso que presiona el botón"):
-        st.markdown("Son 17 ya")
+        st.markdown("ig: @gonza_morel")
+        st.markdown("Se entera la novia y lo mata")
