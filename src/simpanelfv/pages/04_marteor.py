@@ -2,7 +2,7 @@ import streamlit as st
 
 st.write ("""
 # Sistema de un generador fotovoltaico
-Un Un generador de energía fotovoltaica (o sistema solar fotovoltaico) es una instalación 
+Un generador de energía fotovoltaica (o sistema solar fotovoltaico) es una instalación 
 eléctrica diseñada para transformar la radiación solar en electricidad utilizable mediante 
 el efecto fotoeléctrico.
 ## Funcionamiento
@@ -34,30 +34,31 @@ y baterías necesitas.
 
 ## Formulas del cáculo
 ### Potencia Eléctrica Generada [Kw].
-P = N \cdot \frac{G}{G_{std}} \cdot P_{pico} \cdot [1 + k_p \cdot (T_c - T_r)] \cdot \eta \cdot 10^{-3}
+P[\text{kW}] = N \cdot \frac{G}{G_{\text{std}}} \cdot P_{\text{pico}} \cdot \left[ 1 + k_p \cdot (T_c - T_r) \right] \cdot \eta \cdot 10^{-3}
+
 donde:
-N: Cantidad total de paneles en el arreglo.
-G: Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
+- N: Cantidad total de paneles en el arreglo.
+- G: Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
 La irradiancia mide el flujo de energía proveniente de la radiación solar (sea de forma
 directa o indirecta) por unidad de superficie incidente.
-Gstd: Irradiancia estándar, en W/m2. Es un valor de irradiancia que utilizan los fabricantes
+- Gstd: Irradiancia estándar, en W/m2. Es un valor de irradiancia que utilizan los fabricantes
 de los módulos para referenciar ciertas características técnicas. Normalmente
-Gstd = 1000 [W/m2].
-Tr: Temperatura de referencia, en Celsius. Es una temperatura utilizada por los
+- Gstd = 1000 [W/m2].
+- Tr: Temperatura de referencia, en Celsius. Es una temperatura utilizada por los
 fabricantes de los módulos para referenciar ciertos parámetros que dependen de la
 misma. Normalmente Tr = 25 [◦C].
-Tc: Temperatura de la celda, en Celsius. Es la temperatura de los componentes
+- Tc: Temperatura de la celda, en Celsius. Es la temperatura de los componentes
 semiconductores que conforman cada módulo fotovoltaico.
-Ppico: Potencia pico de cada módulo, en Watt. Se interpreta como la potencia eléctrica
+- Ppico: Potencia pico de cada módulo, en Watt. Se interpreta como la potencia eléctrica
 que entrega un módulo cuando G coincide con Gstd y cuando Tc coincide con Tr, en
 ausencia de viento y sin que el panel se vincule a otros componentes eléctricos que
 afecten el desempeño de la instalación. Constituye la potencia nominal bajo la cual
 los módulos son comercializados.
-kp: Coeficiente de temperatura-potencia, en ◦C−1. Es un parámetro negativo que
+- kp: Coeficiente de temperatura-potencia, en ◦C−1. Es un parámetro negativo que
 refleja cómo incide la temperatura de la celda en el rendimiento del GFV. Se observa
 que incrementos (disminuciones) de Tc producen, en consecuencia, disminuciones
 (incrementos) de P.
-η: Rendimiento global de la instalación “por unidad” (valor ideal: 1). Se utiliza para
+- η: Rendimiento global de la instalación “por unidad” (valor ideal: 1). Se utiliza para
 considerar el efecto de sombras parciales sobre el GFV, suciedad sobre la superficie
 de los módulos y, fundamentalmente, el rendimiento del equipo controlador-inversor.
 Los inversores contemplados por el modelo también incluyen el sistema 
@@ -67,8 +68,8 @@ de control para maximizar la potencia de salida.
 
 T_c = T + 0.031 \left[^\circ C \, m^2/W \right] \cdot G
 donde:
-T_c: La Temperatura de la celda en [°C].
-G: Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
+- T_c: La Temperatura de la celda en [°C].
+- G: Irradiancia global incidente en forma normal a los módulos fotovoltaicos, en W/m2.
 La irradiancia mide el flujo de energía proveniente de la radiación solar (sea de forma
 directa o indirecta) por unidad de superficie incidente.
 
@@ -79,6 +80,7 @@ en relación a la potencia nominal Pinv del equipo. Si este umbral no es superad
 no entrega potencia eléctrica. Asimismo, el valor Pinv (en kilo-Watt) opera como
 límite superior del GFV. En consecuencia, la potencia real Pr que entrega la instalación se
 puede calcular como:
+
 P_{\min} [kW] = \frac{\mu(\%)}{100} \cdot P_{inv}
 
 P_r [kW] = 
