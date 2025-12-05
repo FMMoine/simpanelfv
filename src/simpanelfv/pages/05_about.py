@@ -14,4 +14,5 @@ st.write("""
 
 if st.button(label='Presiona para contenido adicional', type="primary"):
     st.balloons()
-    st.dialog("Otro curioso que presiona el botón")
+    with st.popover("Otro curioso que presiona el botón"):
+        st.markdown("Son 17 ya")
