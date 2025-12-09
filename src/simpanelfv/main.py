@@ -24,4 +24,6 @@ pages = {
 }
 
 pg = st.navigation(pages, position="sidebar")
+
+st.logo("img/SimpanelFVBrand.png", size="large")
 pg.run()

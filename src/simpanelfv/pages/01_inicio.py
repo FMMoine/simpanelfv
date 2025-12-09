@@ -17,6 +17,10 @@ if 'Pinv' not in st.session_state:
     st.session_state['Pinv'] = 3.0     # Potencia Inversor
 if 'mu' not in st.session_state:
     st.session_state['mu'] = 2.0       # Umbral mínimo
+if 'Gstd' not in st.session_state:
+    st.session_state['Gstd'] = 1000.0     # Irradiancia Estandar
+if 'Tr' not in st.session_state:
+    st.session_state['Tr'] = 25.0       # Temperatura de Referencia
 if 'CostoInst' not in st.session_state:
     st.session_state['CostoInst'] = 1000000.0     # Costo de la instalacion
 if 'CostoEn' not in st.session_state:
@@ -24,16 +28,17 @@ if 'CostoEn' not in st.session_state:
 if 'CalcAmort' not in st.session_state:
     st.session_state['CalcAmort'] = False       # Calcular Amortizacion
 if 'EnCalc' not in st.session_state:
-    st.session_state['EnCalc'] = 1       # Calcular Amortizacion
+    st.session_state['EnCalc'] = 0.0       # Cantidad de energia generada
 
 
 # Variables de simulación (Resultados)
 if 'simulacion_realizada' not in st.session_state:
     st.session_state['simulacion_realizada'] = False
     
+st.title(":blue[Sim]Pa:yellow[n]el:blue[FV]")
+st.subheader("Simulador de generación de equipo de paneles fotovoltaicos")
+st.divider()
 st.write("""
-# SimPanelFV
-Simulador de generación de equipo de paneles fotovoltaicos
 ## Caracterísitcas de la App
 ### Esta aplicación contiene las siguientes características:
 - Configuración Personalizada: El usuario puede ingresar manualmente las especificaciones técnicas y características operativas del sistema generador que desea simular.
@@ -49,3 +54,10 @@ La aplicación basará su enfoque al analisis físico-energtico y la facilidad d
 
 - Dimensionamiento Automático: Simpanelfv es una herramienta de simulación y validación, no de diseño o dimensionamiento automático. La aplicación no sugiere una configuración óptima de paneles basada en un perfil de consumo.
 """)
+
+st.divider()
+
+st.write("""
+         ### Más información disponible en el respositorio de GitHub de la aplicación, disponible en: https://github.com/FMMoine/simpanelfv""")
+
+st.image("img/SimpanelFV1.png", )

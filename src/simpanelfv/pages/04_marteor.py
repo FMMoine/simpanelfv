@@ -49,9 +49,12 @@ st.markdown(r"""
 * $P_{pico}$: Potencia pico de cada módulo ($W$). Es la potencia cuando $G$ coincide con $G_{std}$ y $T_c$ con $T_r$.
 * $k_p$: Coeficiente de temperatura-potencia ($^\circ C^{-1}$). Es negativo; si $T_c$ sube, $P$ baja.
 * $\eta$: Rendimiento global de la instalación "por unidad" (valor ideal: 1). Incluye suciedad, sombras y rendimiento del inversor.
+
+El último factor de multipliación, $10^{-3}$, corresponde al cambio de unidades de $W$ a $kW$.
 """)
 
 st.subheader("Temperatura de la celda")
+st.write("Un modelo predictivo sencillo pero suficientemente exacto de la temperatura de la selda se puede observar a continuación")
 st.latex(r"""T_c = T + 0.031 \left[^\circ C \, m^2/W \right] \cdot G""")
 
 st.markdown(r"""

@@ -47,13 +47,13 @@ except Exception as e:
         mime="text/csv"
     )
 
-print(st.session_state['CostoInst'])
-print("Termino Rerun")
+# print(st.session_state['CostoInst'])
+# print("Termino Rerun")
 
 if st.session_state.get('config_adicional_guardada') and st.session_state.get('CalcAmort'):
     CostoInst = st.session_state['CostoInst']
     CostoEn = st.session_state['CostoEn']
-    EnCalc = st.session_state['EnCalc']
+    EnCalc = st.session_state.get('EnCalc', 0.0)
     st.write("""
                 ## Amortización de la instalación:
             """)

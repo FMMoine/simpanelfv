@@ -27,19 +27,19 @@ kp = st.session_state['kp']
 Pinv = st.session_state['Pinv']
 eta = st.session_state['eta']
 mu = st.session_state['mu']
+Gstd = st.session_state['Gstd']
+Tr = st.session_state['Tr']
 
 
 df_input = st.session_state['df_clima'] 
 
 st.success(f"✅ Datos listos: Simular sistema con {N} paneles de {Ppico}W, empleando {len(df_input)} registros de clima.")
 
+generador = GenPanFV(Ppico=Ppico, N=N, kp=kp, eta=eta, Pinv=Pinv, mu=mu, Gstd=Gstd, Tr=Tr)
 
 if st.button("Ejecutar Simulación", type="primary"):
     
     with st.spinner("Calculando potencia generada..."):
-        
-        generador = GenPanFV(Ppico=Ppico, N=N, kp=kp, eta=eta, Pinv=Pinv, mu=mu)
-        
         
         potencias = generador.pot_generada_rango(df_input['G'], df_input['T'])
         
@@ -95,13 +95,13 @@ if st.session_state.get('simulacion_lista'):
             st.stop()
 
    
-    
-    energia_filtrada = df_filtrado['Potencia_Salida_kW'].sum() * (10/60)
-    pot_max_filtrada = df_filtrado['Potencia_Salida_kW'].max()
+    # Calculo de energia filtrado
+    energia_filtrada = generador.energia(df_filtrado['Potencia_Salida_kW'].tolist())
+    # Calculo de potencia maxima
+    pot_max_filtrada, _ = generador.max_pot(df_filtrado['Potencia_Salida_kW'])
 
     st.session_state['EnCalc'] = energia_filtrada
     
-
     horas_totales = len(df_filtrado) * (10/60)
     energia_ideal = Pinv * horas_totales
     fu_filtrado = (energia_filtrada / energia_ideal * 100) if energia_ideal > 0 else 0

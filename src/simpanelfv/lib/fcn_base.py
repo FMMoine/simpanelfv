@@ -2,43 +2,13 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-def lib_test():
-    """
-    Función de testeo para verificar que el módulo se importa correctamente.
-    """
-
-    gen_facultad = GenPanFV(240, 12, -4.4e-3, 0.97, 2.5, 2)
-
-    pot_punt = gen_facultad.pot_modelo_GFV(750, 25)
-    print(pot_punt)
-
-    datos = pd.read_excel("data/Datos_climatologicos_Santa_Fe_2019.xlsx", index_col=0)
-    # print(datos)
-    lista_G = datos['Irradiancia (W/m²)']
-    lista_T = datos['Temperatura (°C)']
-    # Irradiancia (W/m²)  Temperatura (°C)
-
-    gen_facultad.pot_generada_rango(lista_G,lista_T)
-    pot_rang = gen_facultad.__listaP
-
-    print("Rango de Potencias")
-    print(pot_rang, type(pot_rang))
-
-    plt.plot(pot_rang)
-    plt.show()
-
-    print(gen_facultad.pot_media(), gen_facultad.energia())
-
-    print("El módulo fcn_base.py se ha cargado correctamente.")
-
-
 class GenPanFV:
     """
     Clase que modela un Generador Fotovoltaico y su inversor asociado.
     Almacena los parámetros fijos y calcula la potencia y energía generada.
     """
 
-    def __init__(self, Ppico, N, kp, eta, Pinv, mu=2, Gstd=1000, Tr=25):
+    def __init__(self, Ppico, N, kp, eta, Pinv, mu=2.0, Gstd=1000.0, Tr=25.0):
         self.Ppico = Ppico  # Potencia pico de un módulo (W)
         self.kp = kp        # Coeficiente de temperatura (1/°C)
         self.N = N          # Número de módulos
@@ -51,7 +21,7 @@ class GenPanFV:
         # Potencia mínima de arranque del inversor (en kW)
         self.P_min = (self.mu / 100) * self.Pinv 
         
-        # Array para almacenar la última serie de potencias calculada
+        # Array para almacenar de forma interna una serie de potencias calculada
         self.__listaP = None
 
     @property
@@ -121,19 +91,18 @@ class GenPanFV:
             return 0.0
         return np.mean(self.__listaP)
 
-    def energia(self):
+    def energia(self, PotExt):
         """
         Devuelve la energía total generada (en kWh) de la última simulación,
         asumiendo intervalos de 10 minutos (1/6 de hora).
         """
-        if self.__listaP is None:
-            return 0.0
         
         # Intervalo de tiempo en horas (10 min = 1/6 h)
         intervalo_h = 10 / 60
         
         # Energía = Suma de (Potencia_i * intervalo_h)
-        nrg = np.sum(self.__listaP.sum * intervalo_h)
+        nrg = np.sum(PotExt) * intervalo_h
+
         return nrg
 
     def factor_de_utilizacion(self):
@@ -160,17 +129,15 @@ class GenPanFV:
         fdu = energia_generada / energia_nominal_inversor
         return fdu
 
-    def max_pot(self):
+    def max_pot(self, PotExt):
         """
         Devuelve una tupla (índice, valor) de la potencia máxima
         identificada en la última simulación.
         """
-        if self.__listaP.size == 0:
-            return (0, 0.0)
             
-        max_P_val = np.max(self.__listaP)
-        max_P_idx = np.argmax(self.__listaP)
-        return (max_P_idx, max_P_val)
+        max_P_val = np.max(PotExt)
+        max_P_idx = np.argmax(PotExt)
+        return (max_P_val, max_P_idx)
 
     def graficar_pot(self):
         """
@@ -200,3 +167,32 @@ class GenPanFV:
                     horizontalalignment='center', verticalalignment='center', transform=ax.transAxes)
             
         return fig
+    
+def lib_test():
+    """
+    Función de testeo para verificar que el módulo se importa correctamente.
+    """
+
+    gen_facultad = GenPanFV(240, 12, -4.4e-3, 0.97, 2.5, 2)
+
+    pot_punt = gen_facultad.pot_modelo_GFV(750, 25)
+    print(pot_punt)
+
+    datos = pd.read_excel("data/Datos_climatologicos_Santa_Fe_2019.xlsx", index_col=0)
+    # print(datos)
+    lista_G = datos['Irradiancia (W/m²)']
+    lista_T = datos['Temperatura (°C)']
+    # Irradiancia (W/m²)  Temperatura (°C)
+
+    gen_facultad.pot_generada_rango(lista_G,lista_T)
+    pot_rang = gen_facultad.listaP
+
+    print("Rango de Potencias")
+    print(pot_rang, type(pot_rang))
+
+    plt.plot(pot_rang)
+    plt.show()
+
+    print(gen_facultad.pot_media(), gen_facultad.energia(gen_facultad.listaP))
+
+    print("El módulo fcn_base.py se ha cargado correctamente.")
