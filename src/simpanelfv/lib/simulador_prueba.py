@@ -1,3 +1,5 @@
+# Modulo de prueba auxiliar
+
 import fcn_base as fcn  # Importa el módulo que acabamos de crear
 import matplotlib.pyplot as plt
 import numpy as np
